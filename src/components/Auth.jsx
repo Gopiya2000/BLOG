@@ -12,7 +12,7 @@ const Auth = () => {
   const classes = useStyles()
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const signup = useSelector( state => state.signup )
+  const signup = useSelector( state => state.auth.signup )
   const [Inputs, setInputs] = useState({
     name: "",
     email: "",

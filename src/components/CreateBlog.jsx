@@ -3,27 +3,27 @@ import { Box, TextField, Button, TextareaAutosize, Typography } from "@mui/mater
 import { useState } from "react"
 import { useNavigate  } from "react-router-dom"
 import { useDispatch } from "react-redux"
-//import { addBlog,updateBlog } from "../store/Actions/blogActions"
+import { addBlog,updateBlog } from "../store/Actions/blogActions"
 
 
-export const CreateBlog = ({ blogDetails, setblogDetails }) => {
+export const CreateBlog = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // const [blogDetails, setblogDetails] = useState({
-    //     title:'',
-    //     content:'',
-    //     image:'',
-    //     tag:'',
-    //     user:''
-    // })
+    const [blogDetails, setblogDetails] = useState({
+        title:'',
+        content:'',
+        image:'',
+        tag:'',
+        user:''
+    })
 
-    // const changeHandler=(event)=>{
-    //     setblogDetails((prevState)=>({...prevState,[event.target.name]:event.target.value}))
-    // }
-    // const submitHandler=(event)=>
-    // {
-    //     event.preventDefault()
+    const changeHandler=(event)=>{
+        setblogDetails((prevState)=>({...prevState,[event.target.name]:event.target.value}))
+    }
+     const submitHandler=(event)=>
+     {
+        event.preventDefault()
     //     if(blogDetails._id){
     //         const id = blogDetails._id
     //         const updatedBlog = {
@@ -40,22 +40,24 @@ export const CreateBlog = ({ blogDetails, setblogDetails }) => {
     //         navigate('/blogs')
     //     }
     //     else{
-    //     dispatch(addBlog(blogDetails))
-    //     navigate('/blogs')
-    //     }
+       dispatch(addBlog(blogDetails))
+       navigate('/blogs')
+        }
     // }
 //}
 return(
             <form onSubmit={submitHandler}>
-                <Box sx={{border:3,width:"50%",height:"650px",marginLeft:"25%", marginTop:"5%",borderRadius:15}}>
+                <Box>
                 <Typography variant="h4" sx={{marginLeft:"32%",marginTop:"5%",width:"70%"}}>Blog details</Typography>
-                    <TextField type="text" variant="standard" name="title" value={blogDetails.title} required label="Title" sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/>
-                    <TextField type="text" variant="standard" name="content" value={blogDetails.content} required label="content" sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/>
+                    <TextField type="text" variant="standard" name="title" value={blogDetails.title} onChange={changeHandler} required label="Title" />
+                    <TextField type="text" variant="standard" name="content" value={blogDetails.content} onChange={changeHandler} required label="content" />
                     {/* <TextField type="file" name="uploadedFile" value={uploadedFile} onChange={handleUploadedFile} sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/>
                     <label>File title:</label> */}
-                    <TextField type="text" variant="standard" name="image" value={blogDetails.image}  required label="Image" sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/>
-                    <TextField type="text" placeholder="tag" name="tag" value={tag} onChange={handleFileTitle} required />
-                    <Button color="inherit" type="submit" sx={{width:"20%", marginLeft:"40%", marginTop:"10%", backgroundColor:"black", color:"green", border:3}}>Register</Button>
+                    {/* <TextField type="text" variant="standard" name="image" value={blogDetails.image}  required label="Image" sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/> */}
+                    <TextField type="file" name="image" accept="image/*"  onChange={changeHandler} value={blogDetails.image}/>
+                    <TextField type="text" placeholder="tag" name="tag" value={blogDetails.tag}  onChange={changeHandler} required />
+                    {/* <TextField type="text" variant="standard" name="user" value={blogDetails.user} onChange={changeHandler} required label="user" /> */}
+                    <Button color="inherit" type="submit" >Register</Button>
                 </Box>
                 </form>
         )

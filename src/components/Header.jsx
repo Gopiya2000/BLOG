@@ -13,7 +13,7 @@ const Header = () => {
     // const user = useSelector( state => { console.log(state)
     //     return state.tokener})
     // console.log("user id : ",user._id)
-    const login = useSelector(state => state.login);
+    const login = useSelector(state => state.auth.login);
     const [selectTab, setSelectTab] = useState(0)
     const logoutHandler = () => {
         dispatch(setLogout())
@@ -61,7 +61,7 @@ const Header = () => {
                     <Button
                     onClick={logoutHandler}
                         LinkComponent={Link}
-                        to="/blogs"
+                        to="/auth"
                         variant='contained'
                         style={logoutButton}
                     >

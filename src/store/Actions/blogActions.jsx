@@ -23,20 +23,27 @@ export const viewBlogs = async () => {
      }
 
 //add blogs
-// export const addBlog = (blog) => {
-//     return (dispatch, getState) => {
-//         axios.post(`${url}/api/blog/add`, blog)
-//             .then(blogs => {
-//                 dispatch({
-//                     type: "ADD_BLOG",
-//                     blogs
-//                 })
-//             })
-//             .catch(err => {
-//                 console.log("error", err.message)
-//             })
-//     }
-// }
+export const addBlog = (blog) => {
+  // console.log("bll",blog)
+   blog.tag=blog.tag.split(',');
+   console.log("blogs",blog);
+   
+    return (dispatch, getState) => {
+      
+        axios.post(`${url}/api/blog/add`, blog)
+            .then(blogs => {
+               
+            //     dispatch({
+            //         type: "ADD_BLOG",
+            //         blogs
+            //     })
+            }
+            )
+            .catch(err => {
+                console.log("error", err.message)
+            })
+    }
+}
 // export const updateBlog = (updateBlog, id) => {
 //     console.log("updated blog", updateBlog)
 //     return (dispatch) => {
