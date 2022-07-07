@@ -70,8 +70,8 @@ const Auth = () => {
     }
     else{
       sendRequest()
-      .then(()=>dispatch(setLogin()))
-      .then(data => console.log(data))
+      .then((data)=>dispatch(setLogin(data)))
+      // .then(data => console.log(data))
       navigate("/blogs")
     }
   }

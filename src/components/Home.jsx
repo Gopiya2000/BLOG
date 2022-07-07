@@ -13,8 +13,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Home = () => {
 
-  const blogs = useSelector((state) => state.blog.blogs)
-  console.log(blogs)
+const blogs = useSelector((state) => state.blog.blogs)
+  console.log(blogs)  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,13 +77,13 @@ const Home = () => {
             {/* {" "} */}
             <Card style={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc" }}>
               <CardHeader
-                avatar={
-                  <Avatar style={{ bgcolor: "red" }} aria-label="recipe">
-                    {blog.user}
-                  </Avatar>
-                }
+                // avatar={
+                //   <Avatar style={{ bgcolor: "red" }} aria-label="recipe">
+                //     {blog.user}
+                //   </Avatar>
+                // }
                 title={blog.title}
-                subheader="September 14, 2016"
+                //subheader="September 14, 2016"
               />
               <CardMedia
                 component="img"

@@ -2,12 +2,17 @@ import React from 'react'
 import { Box, TextField, Button, TextareaAutosize, Typography } from "@mui/material"
 import { useState } from "react"
 import { useNavigate  } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch ,useSelector} from "react-redux"
 import { addBlog,updateBlog } from "../store/Actions/blogActions"
 
 
 export const CreateBlog = () => {
-
+    const user = useSelector((state) => {
+        console.log("state",state);
+        return state.auth.user.existingUser
+    })
+    console.log("user",user)
+    // const[image,setImage]=useState("/blogimg.png")
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [blogDetails, setblogDetails] = useState({
@@ -17,13 +22,41 @@ export const CreateBlog = () => {
         tag:'',
         user:''
     })
-
+console.log("blogdetails",blogDetails);
     const changeHandler=(event)=>{
-        setblogDetails((prevState)=>({...prevState,[event.target.name]:event.target.value}))
+    //     if(event.target.name==="image")
+    //     {
+        
+    // }
+
+
+
+        let newState = {[event.target.name]:event.target.value}
+        if(event.target.name == "image"){
+            const reader=new FileReader();
+        reader.onload=()=>{
+            // if()
+            // {
+
+            // }
+            if(reader.onload===2)
+            {
+                newState[event.target.name]={"url":reader.result}
+            }
+            reader.readAsDataURL(event.target.files[0])
+        }
+            // console.log("event",event);
+            // console.log("imageurl",event.target.value);
+            // newState[event.target.name]={"url":event.target.value}
+            //{"url":event.target.files[0].name}
+        }
+        setblogDetails((prevState)=>({...prevState,...newState,
+        user:user["_id"]}))
     }
      const submitHandler=(event)=>
      {
         event.preventDefault()
+        console.log(blogDetails)
     //     if(blogDetails._id){
     //         const id = blogDetails._id
     //         const updatedBlog = {
@@ -54,7 +87,7 @@ return(
                     {/* <TextField type="file" name="uploadedFile" value={uploadedFile} onChange={handleUploadedFile} sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/>
                     <label>File title:</label> */}
                     {/* <TextField type="text" variant="standard" name="image" value={blogDetails.image}  required label="Image" sx={{marginLeft:"15%",marginTop:"10%",width:"70%"}}/> */}
-                    <TextField type="file" name="image" accept="image/*"  onChange={changeHandler} value={blogDetails.image}/>
+                    <TextField type="file" name="image" accept="image/*"  onChange={changeHandler} value={blogDetails.image.url}/>
                     <TextField type="text" placeholder="tag" name="tag" value={blogDetails.tag}  onChange={changeHandler} required />
                     {/* <TextField type="text" variant="standard" name="user" value={blogDetails.user} onChange={changeHandler} required label="user" /> */}
                     <Button color="inherit" type="submit" >Register</Button>

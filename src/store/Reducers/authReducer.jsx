@@ -1,7 +1,7 @@
 const initialState = {
     login : false,
     signup : false,
-    user : true
+    user : {}
 }
 
 // const tokenState = {
@@ -20,9 +20,12 @@ const authReducer = (state = initialState, action) => {
     console.log("AUTH INSIDE");
     switch(action.type){
        
-        case 'SET_LOGIN' : return {
+        case 'SET_LOGIN' :
+             console.log("SetLogin",action.data);
+        return {
             ...state,
-            login : true
+            login : true,
+            user:action.data
         }
         case 'SET_LOGOUT' : return {
             ...state,

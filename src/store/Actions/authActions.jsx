@@ -1,9 +1,11 @@
 import { SET_LOGIN, SET_LOGOUT, SET_SIGNUP, SET_SIGNOUT, TOGGLE_SIGNUP,SET_TOKEN,SET_RETRIEVE_TOKEN,DELETE_USER_ID } from "./authTypes"
 //import axios from "axios";
 
-const setLogin = () => {
+const setLogin = (data) => {
+    console.log("setLoginaction",data);
     return {
-        type : SET_LOGIN
+        type : SET_LOGIN,
+        data:data
     }   
 }
 const setLogout = () => {
