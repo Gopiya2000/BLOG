@@ -47,9 +47,11 @@ const Header = () => {
             {login && <><Box className={classes.loginForm}>
                 <Tabs value={selectTab} textColor= 'inherit' onChange={(e, value) => setSelectTab(value)}>
                     <Tab LinkComponent={Link} to="/blogs" label="Home" />
-                    <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" />
+                    {/* <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" /> */}
                     <Tab LinkComponent={Link} to="/myBlogs" label="My Blog" />
                     <Tab LinkComponent={Link} to="/profile/:id" label="Profile" />
+                    <Tab LinkComponent={Link} to="/userDetails" label="My Details" />
+                    {/* <Tab LinkComponent={Link} to="/userDetails/edit" label="Edit Details" /> */}
                     <Tab LinkComponent={Link} to="/followers/:id" label="My Followers" />
                 </Tabs>
             </Box></>}

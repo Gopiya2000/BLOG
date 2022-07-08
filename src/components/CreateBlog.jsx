@@ -23,6 +23,24 @@ export const CreateBlog = () => {
         user:''
     })
 console.log("blogdetails",blogDetails);
+
+//handle and convert it to base b4
+// const handle = (e) => {
+//     const file = e.target.files[0];
+//     setFileToBase(file);
+//     console.log(file);
+// }
+// const setFileToBase = (file) => {
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onloadend =() =>{
+//         setImage(reader.myCloud);
+//     }
+// }
+
+
+
+
     const changeHandler=(event)=>{
     //     if(event.target.name==="image")
     //     {
@@ -33,6 +51,18 @@ console.log("blogdetails",blogDetails);
 
         let newState = {[event.target.name]:event.target.value}
         if(event.target.name == "image"){
+       
+        //     const file = e.target.files[0];
+        //     setFileToBase(file);
+        //     console.log(file);
+        // }
+        // const setFileToBase = (file) => {
+        //     const reader = new FileReader();
+        //     reader.readAsDataURL(file);
+        //     reader.onloadend =() =>{
+        //         setImage(reader.myCloud);
+        //     }
+
             const reader=new FileReader();
         reader.onload=()=>{
             // if()
@@ -45,6 +75,8 @@ console.log("blogdetails",blogDetails);
             }
             reader.readAsDataURL(event.target.files[0])
         }
+
+             //evening
             // console.log("event",event);
             // console.log("imageurl",event.target.value);
             // newState[event.target.name]={"url":event.target.value}
@@ -53,6 +85,8 @@ console.log("blogdetails",blogDetails);
         setblogDetails((prevState)=>({...prevState,...newState,
         user:user["_id"]}))
     }
+
+
      const submitHandler=(event)=>
      {
         event.preventDefault()
@@ -90,7 +124,7 @@ return(
                     <TextField type="file" name="image" accept="image/*"  onChange={changeHandler} value={blogDetails.image.url}/>
                     <TextField type="text" placeholder="tag" name="tag" value={blogDetails.tag}  onChange={changeHandler} required />
                     {/* <TextField type="text" variant="standard" name="user" value={blogDetails.user} onChange={changeHandler} required label="user" /> */}
-                    <Button color="inherit" type="submit" >Register</Button>
+                    <Button color="inherit" type="submit" >Add</Button>
                 </Box>
                 </form>
         )

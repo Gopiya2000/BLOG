@@ -1,7 +1,7 @@
 const initialState = {
     login : false,
     signup : false,
-    user : {}
+    user : ''
 }
 
 // const tokenState = {
@@ -42,6 +42,10 @@ const authReducer = (state = initialState, action) => {
         case 'TOGGLE_SIGNUP' : return {
             ...state,
             signup : ! state.signup
+        }
+        case 'SET_DETAILS' : return {
+            ...state,
+            user : action.payload
         }
         default : return state
     }

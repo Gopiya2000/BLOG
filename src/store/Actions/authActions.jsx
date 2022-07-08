@@ -1,5 +1,5 @@
-import { SET_LOGIN, SET_LOGOUT, SET_SIGNUP, SET_SIGNOUT, TOGGLE_SIGNUP,SET_TOKEN,SET_RETRIEVE_TOKEN,DELETE_USER_ID } from "./authTypes"
-//import axios from "axios";
+import { SET_LOGIN, SET_LOGOUT, SET_SIGNUP, SET_SIGNOUT, TOGGLE_SIGNUP,SET_DETAILS } from "./authTypes"
+import axios from "axios";
 
 const setLogin = (data) => {
     console.log("setLoginaction",data);
@@ -28,6 +28,39 @@ const toggleSignup = () => {
         type : TOGGLE_SIGNUP
     }
 }
+const setDetails = (user) => {
+    return{
+        type : SET_DETAILS,
+        payload : user
+    }
+}
+const viewUser = (id) => {
+    console.log("received id : ",id)
+    return(dispatch) => {
+        axios.get(`http://localhost:4567/api/user/${id}`)
+        .then((user) => {
+            console.log("view user : ",user.data.user)
+            dispatch(setDetails(user.data.user))
+        })
+        .catch( err => console.log(err) )
+    }
+}
+
+const updateUser = (userDetails,id) => {
+    console.log("authActions user details : ",userDetails)
+    console.log("id : ",id)
+    //id = id._id
+    return (dispatch) => {
+        axios.put(`http://localhost:4567/api/user/details/${id}`,userDetails)
+        .then(() => { 
+            dispatch(setDetails(userDetails))
+        })
+        .catch( err => console.log("error : ",err))
+    }
+}
+
+
+
 // const setToken = (token) => {
 //     return {
 //         type : SET_TOKEN,
@@ -72,6 +105,9 @@ export {
     setSignUp,
     setSignOut,
     toggleSignup,
+    setDetails,
+    viewUser,
+    updateUser
     // storeUserToken,
     // retrieveToken,
     // deleteUserId

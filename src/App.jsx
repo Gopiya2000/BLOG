@@ -10,6 +10,8 @@ import Followers from "./components/Followers";
 import { Provider, useSelector } from "react-redux";
 import Home from "./components/Home";
 import { CreateBlog } from "./components/CreateBlog";
+import UserDetails from "./components/UserDetails"
+import EditUserDetails from "./components/EditUserDetails"
 import { useDispatch } from 'react-redux';
 //import { store1 } from "../store1";
 
@@ -49,6 +51,8 @@ function App() {
         <Route path="/blogs/add" element={<CreateBlog />} />
         <Route path="/myBlogs" element={<MyBlog />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/userDetails" element={<UserDetails />} />
+        <Route path="/userDetails/edit" element={<EditUserDetails />} />
         <Route path="/followers/:id" element={<Followers />} />
       </Routes>
     </main>

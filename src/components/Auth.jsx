@@ -6,7 +6,8 @@ import { useSelector,useDispatch } from 'react-redux';
 //import { authActions } from '../store';
 //import { useNavigate } from 'react-router';
 import {useStyles,fieldTypography,authSubmit,changeButton} from '../styles/styles';
-import { setLogin, setSignOut, toggleSignup ,storeUserToken} from '../store/Actions/authActions';
+import { setLogin, setSignOut, toggleSignup } from '../store/Actions/authActions';
+//import { storeUserToken } from '../store/Actions/userActions';
 
 const Auth = () => {
   const classes = useStyles()
@@ -64,17 +65,22 @@ const Auth = () => {
     if(signup){
       sendRequest("signup")
       .then(()=>{console.log("ho")
+      //dispatch(storeUserToken(Inputs,'signup'))
         dispatch(setSignOut())})
       .then(data => console.log(data))
       navigate("/auth")
     }
     else{
       sendRequest()
-      .then((data)=>dispatch(setLogin(data)))
+      .then((data)=>{
+      //dispatch(storeUserToken(Inputs))
+      dispatch(setLogin(data))
       // .then(data => console.log(data))
       navigate("/blogs")
+      }
+      )
     }
-  }
+    }
   return (
     <div>
       <form onSubmit={handleSubmit}>
