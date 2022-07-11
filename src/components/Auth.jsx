@@ -7,7 +7,7 @@ import { useSelector,useDispatch } from 'react-redux';
 //import { useNavigate } from 'react-router';
 import {useStyles,fieldTypography,authSubmit,changeButton} from '../styles/styles';
 import { setLogin, setSignOut, toggleSignup } from '../store/Actions/authActions';
-//import { storeUserToken } from '../store/Actions/userActions';
+import { storeUserToken } from '../store/Actions/userActions';
 
 const Auth = () => {
   const classes = useStyles()
@@ -61,11 +61,12 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(Inputs);
+    console.log("submit")
+    console.log("inputs are",Inputs);
     if(signup){
       sendRequest("signup")
       .then(()=>{console.log("ho")
-      //dispatch(storeUserToken(Inputs,'signup'))
+      dispatch(storeUserToken(Inputs,'signup'))
         dispatch(setSignOut())})
       .then(data => console.log(data))
       navigate("/auth")
@@ -73,7 +74,8 @@ const Auth = () => {
     else{
       sendRequest()
       .then((data)=>{
-      //dispatch(storeUserToken(Inputs))
+        console.log("loginn")
+      dispatch(storeUserToken(Inputs))
       dispatch(setLogin(data))
       // .then(data => console.log(data))
       navigate("/blogs")

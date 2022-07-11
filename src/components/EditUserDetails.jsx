@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 import { useStyles } from "../styles/styles"
-import { viewUser,updateUser } from "../store/Actions/authActions"
+import { viewUser,updateUser } from "../store/Actions/userActions"
 // import bcrypt from 'bcrypt'
 const EditUserDetails = () => {
     const classes = useStyles
+    const userId = useSelector( state => state.userTokener._id)
     const user = useSelector( state => state.auth.user.existingUser )
     console.log("user from edit user profile",user)
     const { name,email,username,mobile,date,password,confirm } = user
@@ -60,10 +61,10 @@ const EditUserDetails = () => {
     }
     return(<>
     <form onSubmit={ updateHandler }>
-        <Box className = {classes.loginForm}>
-          <Typography padding={1} variant='h4' textAlign="center">
+        <Box spacing={1} sx={{ maxWidth: 400 ,marginLeft:70}}>
+          {/* <Typography padding={1} variant='h4' textAlign="center">
           My Details
-          </Typography>
+          </Typography> */}
           <TextField type={'text'} name='name' value={userCredentials.name || ""}  onChange={changeCredentialHandler} placeholder='Name' margin='normal' required/> 
           <TextField type={'email'} name='email' value={userCredentials.email || ""} onChange={changeCredentialHandler} placeholder='Email' margin='normal' required/>
           <TextField type={'text'} name='username' value={userCredentials.username || ""} onChange={changeCredentialHandler} placeholder='Username' margin='normal' required/>
@@ -71,7 +72,7 @@ const EditUserDetails = () => {
           <TextField type={'text'} name='date' value={userCredentials.date || ""}  onChange={changeCredentialHandler} placeholder='Date' margin='normal' required/>
           <TextField type={'password'} name='password' value={userCredentials.password || ""}  onChange={changeCredentialHandler} placeholder='Password' margin='normal' required/>
           <TextField type={'password'} name='confirm' value={userCredentials.confirm || ""}  onChange={changeCredentialHandler} placeholder='Confirm' margin='normal' required/>
-          <Button type='submit' variant='contained' color='warning' style={{margin : '5% 0'}}>Update</Button>
+          <Button type='submit' variant='contained' color='warning' style={{margin : '9%'}}>Update</Button>
         </Box>
       </form>
     </>)

@@ -43,10 +43,6 @@ const authReducer = (state = initialState, action) => {
             ...state,
             signup : ! state.signup
         }
-        case 'SET_DETAILS' : return {
-            ...state,
-            user : action.payload
-        }
         default : return state
     }
 }

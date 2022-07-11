@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Box, Button, Tabs, Tab, Toolbar, Typography } from '@mui/material';
 import { useStyles, appBar, loginTabs, loginBox, logoutButton, signupButton, LoginButton } from '../styles/styles'
 import { setLogout, setSignOut, setSignUp } from '../store/Actions/authActions';
+import { viewUser } from '../store/Actions/userActions';
+//import { deleteUserToken, viewUser } from '../store/Actions/userActions';
 
 const Header = () => {
     const location = useLocation()
+    //const user = useSelector( state => state.userTokener )
     const classes = useStyles()
     const dispatch = useDispatch();
     // const user = useSelector( state => { console.log(state)
@@ -16,7 +19,7 @@ const Header = () => {
     const login = useSelector(state => state.auth.login);
     const [selectTab, setSelectTab] = useState(0)
     const logoutHandler = () => {
-        dispatch(setLogout())
+        dispatch(deleteUserToken())
     }
     const signupHandler = () => {
         dispatch(setSignUp())
@@ -41,7 +44,11 @@ const Header = () => {
             setSelectTab(4)
         }
     }, [])
+    useEffect(() => {
+        dispatch(viewUser())
+    },[dispatch])
     return <AppBar position="sticky" style={appBar}>
+
         <Toolbar>
             <Typography variant='h4'>Blog App</Typography>
             {login && <><Box className={classes.loginForm}>
@@ -49,10 +56,10 @@ const Header = () => {
                     <Tab LinkComponent={Link} to="/blogs" label="Home" />
                     {/* <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" /> */}
                     <Tab LinkComponent={Link} to="/myBlogs" label="My Blog" />
-                    <Tab LinkComponent={Link} to="/profile/:id" label="Profile" />
+                    <Tab LinkComponent={Link} to="/profile" label="Profile" />
                     <Tab LinkComponent={Link} to="/userDetails" label="My Details" />
                     {/* <Tab LinkComponent={Link} to="/userDetails/edit" label="Edit Details" /> */}
-                    <Tab LinkComponent={Link} to="/followers/:id" label="My Followers" />
+                    {/* <Tab LinkComponent={Link} to="/followers/:id" label="My Followers" /> */}
                 </Tabs>
             </Box></>}
             <Box style={loginBox}>

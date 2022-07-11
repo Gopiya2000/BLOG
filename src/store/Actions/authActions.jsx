@@ -1,4 +1,4 @@
-import { SET_LOGIN, SET_LOGOUT, SET_SIGNUP, SET_SIGNOUT, TOGGLE_SIGNUP,SET_DETAILS } from "./authTypes"
+import { SET_LOGIN, SET_LOGOUT, SET_SIGNUP, SET_SIGNOUT, TOGGLE_SIGNUP } from "./authTypes"
 import axios from "axios";
 
 const setLogin = (data) => {
@@ -28,36 +28,36 @@ const toggleSignup = () => {
         type : TOGGLE_SIGNUP
     }
 }
-const setDetails = (user) => {
-    return{
-        type : SET_DETAILS,
-        payload : user
-    }
-}
-const viewUser = (id) => {
-    console.log("received id : ",id)
-    return(dispatch) => {
-        axios.get(`http://localhost:4567/api/user/${id}`)
-        .then((user) => {
-            console.log("view user : ",user.data.user)
-            dispatch(setDetails(user.data.user))
-        })
-        .catch( err => console.log(err) )
-    }
-}
+// const setDetails = (user) => {
+//     return{
+//         type : SET_DETAILS,
+//         payload : user
+//     }
+// }
+// const viewUser = (id) => {
+//     console.log("received id : ",id)
+//     return(dispatch) => {
+//         axios.get(`http://localhost:4567/api/user/${id}`)
+//         .then((user) => {
+//             console.log("view user : ",user.data)
+//             // dispatch(setDetails(user.data.user))
+//         })
+//         .catch( err => console.log(err) )
+//     }
+// }
 
-const updateUser = (userDetails,id) => {
-    console.log("authActions user details : ",userDetails)
-    console.log("id : ",id)
-    //id = id._id
-    return (dispatch) => {
-        axios.put(`http://localhost:4567/api/user/details/${id}`,userDetails)
-        .then(() => { 
-            dispatch(setDetails(userDetails))
-        })
-        .catch( err => console.log("error : ",err))
-    }
-}
+// const updateUser = (userDetails,id) => {
+//     console.log("authActions user details : ",userDetails)
+//     console.log("id : ",id)
+//     //id = id._id
+//     return (dispatch) => {
+//         axios.put(`http://localhost:4567/api/user/details/${id}`,userDetails)
+//         .then(() => { 
+//             dispatch(setDetails(userDetails))
+//         })
+//         .catch( err => console.log("error : ",err))
+//     }
+// }
 
 
 
@@ -105,9 +105,9 @@ export {
     setSignUp,
     setSignOut,
     toggleSignup,
-    setDetails,
-    viewUser,
-    updateUser
+    //setDetails,
+    // viewUser,
+    // updateUser
     // storeUserToken,
     // retrieveToken,
     // deleteUserId

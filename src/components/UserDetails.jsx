@@ -3,37 +3,37 @@ import { Box } from '@mui/system'
 import React,  {useEffect}  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import  {viewUser}  from '../store/Actions/authActions'
+import  {viewUser}  from '../store/Actions/userActions'
 
  const UserDetails = () => {
   
-  //const userId = useSelector( state => state.user.userId )
-  const user = useSelector( (state) => state.auth.user )
+  const userId = useSelector( state => state.userTokener._id )
+  console.log("userId :",userId);
+  const user = useSelector( (state) => state.userDetails.user )
   console.log("user object  : ",user)
   //console.log("user details : ",user.existingUser)
   const dispatch = useDispatch()
     useEffect(() => {
-      dispatch(viewUser(user.existingUser._id))
-    },[])
+      dispatch(viewUser(userId))
+    },[userId])
     //console.log("viewuser",user.existingUser);
     return(<>
-      My details Page
       <Box sx={{
             width: 400,
             height: 370,
             margin: 'auto',
             marginTop:'90px'
         }}>
-      <Stack spacing={1} sx={{ maxWidth: 600 }}>
-            <SnackbarContent message={user.existingUser.name} action="Name" />
-            <SnackbarContent message={user.existingUser.email} action="Email"/>
-            <SnackbarContent message={user.existingUser.username} action="Username" />
-            <SnackbarContent message={user.existingUser.mobile} action="Mobile" />
-            <SnackbarContent message={user.existingUser.date} action="Date" />
-            <SnackbarContent message={user.existingUser.password} action="Password" />
-            <SnackbarContent message={user.existingUser.confirm} action="Confirm" />
+      <Stack spacing={1}>
+            <SnackbarContent message={user.name} action="NAME" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
+            <SnackbarContent message={user.email} action="EMAIL" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
+            <SnackbarContent message={user.username} action="USERNAME" sx={{backgroundColor:"#2E3B55", color:'white'}} />
+            <SnackbarContent message={user.mobile} action="MOBILE" sx={{backgroundColor:"#2E3B55", color:'white'}} />
+            <SnackbarContent message={user.date} action="DATE" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
+            <SnackbarContent message={user.password} action="PASSWORD" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
+            <SnackbarContent message={user.confirm} action="CONFIRM" sx={{backgroundColor:"#2E3B55", color:'white'}} />
         </Stack>
-        <Button LinkComponent={Link} to='/userDetails/edit' variant='outlined' sx={{ margin: 1, borderRadius: 3, marginLeft: 20, marginTop: 3 }} color='warning'>Edit</Button>
+        <Button LinkComponent={Link} to='/userDetails/edit' variant='outlined' sx={{borderRadius: 4, marginLeft: 20, marginTop: 3 }} >Edit</Button>
         </Box>
     </>)
  }
