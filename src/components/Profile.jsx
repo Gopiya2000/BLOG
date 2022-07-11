@@ -6,17 +6,17 @@ import { Link } from 'react-router-dom'
 import { viewProfile } from '../store/Actions/userActions'
 
  const Profile = () => {
-  const profileId = useSelector( state => state.userTokener._id )
-  console.log("profileId :",profileId);
-  const profile = useSelector( (state) => state.profileDetails.profile )
+  const userId = useSelector( state => state.userTokener._id )
+  console.log("userId :",userId);
+  const profile = useSelector( (state) => state.profileDetails.profile)
   //const profileAll = profile[0];
   //console.log("profileAll : ",profileAll);
   console.log("profile object  : ",profile)
-  console.log("profile object[0]  : ",profile[0])
+  console.log("profile object[0]  : ",profile)
   const dispatch = useDispatch()
     useEffect(() => {
-      dispatch(viewProfile(profileId))
-    },[profileId])
+      dispatch(viewProfile(userId))
+    },[userId])
     return(<>
       <Box sx={{
             width: 400,
@@ -33,3 +33,5 @@ import { viewProfile } from '../store/Actions/userActions'
  }
 
  export default Profile;
+
+

@@ -12,7 +12,8 @@ import Home from "./components/Home";
 import { CreateBlog } from "./components/CreateBlog";
 import UserDetails from "./components/UserDetails"
 import EditUserDetails from "./components/EditUserDetails"
-import EditProfile from "./components/EditProfile"
+import EditProfile from "./components/EditProfile";
+import AddProfile from "./components/AddProfile"
 import { useDispatch } from 'react-redux';
 //import { store1 } from "../store1";
 
@@ -51,6 +52,7 @@ function App() {
           </Route>   */}
         <Route path="/blogs/add" element={<CreateBlog />} />
         <Route path="/myBlogs" element={<MyBlog />} />
+        <Route path="/addProfile" element={<AddProfile />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/userDetails" element={<UserDetails />} />

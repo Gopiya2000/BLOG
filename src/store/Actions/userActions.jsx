@@ -1,4 +1,4 @@
-import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS,SET_PROFILE } from "./authTypes"
+import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS,SET_PROFILE ,ADD_PROFILE} from "./authTypes"
 import axios from "axios"
 
 const setUserToken = (token) => {
@@ -25,6 +25,7 @@ const setDetails = (user) => {
     }
 }
 const setProfile = (profile) => {
+    console.log("PROFILE :",profile);
     return{
         type : SET_PROFILE,
         payload : profile
@@ -74,13 +75,34 @@ const updateUser = (userDetails,id) => {
     console.log("id : ",id)
     //id = id._id
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/user/details/${id}`,userDetails)
+        axios.put(`http://localhost:4567/api/user/details/updateProfile`,userDetails)
         .then(() => { 
             dispatch(setDetails(userDetails))
         })
         .catch( err => console.log("error : ",err))
     }
 }
+
+const addProfile = (profile) => {
+    console.log("profile",profile);
+    
+     return (dispatch, getState) => {
+       
+         axios.post(`http://localhost:4567/api/profile/addProfile`, profile)
+             .then(profiles => {
+                
+                //  dispatch({
+                //      type: "ADD_PROFILE",
+                //      profiles
+                //  })
+             }
+             )
+             .catch(err => {
+                 console.log("error", err.message)
+             })
+     }
+ }
+
 const viewProfile = (id) => {
     console.log("received id : ",id)
     return(dispatch) => {
@@ -93,14 +115,18 @@ const viewProfile = (id) => {
     }
 }
 
-const updateProfile = (profileDetails,id) => {
+// const viewProfile = async () => {
+//     return    await  axios.get(`http://localhost:4567/api/profile/?user=${id}`)
+// }
+
+const updateProfile = (profileDetails,_id) => {
     console.log("authActions profile details : ",profileDetails)
-    console.log("id : ",id)
+    console.log("id : ",_id)
     //id = id._id
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/profile/updateProfile/${id}`,profileDetails)
+        axios.put(`http://localhost:4567/api/profile/updateProfile/${_id}`,profileDetails)
         .then(() => { 
-            dispatch(setDetails(profileDetails))
+            dispatch(setProfile(profileDetails))
         })
         .catch( err => console.log("error : ",err))
     }
@@ -111,7 +137,8 @@ export {
     retrieveUserToken,
     deleteUserToken,
     viewUser,
-    viewProfile,
     updateUser,
+    viewProfile,
+    addProfile,
     updateProfile
 }
