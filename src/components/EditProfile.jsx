@@ -3,22 +3,25 @@ import { Box } from "@mui/system"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
-import { useStyles } from "../styles/styles"
+import { useStyles,chooseFile } from "../styles/styles"
 import { viewProfile ,updateProfile} from "../store/Actions/userActions"
+import FileBase from "react-file-base64"
 // import bcrypt from 'bcrypt'
 const EditProfile = () => {
     const classes = useStyles
     const userId = useSelector( state => state.userTokener._id)
     const profile = useSelector( state => state.profileDetails.profile )
     console.log("user from edit profile",profile)
-    const { bio } = profile
+    const { bio,image } = profile
     console.log("userconsole",profile);
     const dispatch = useDispatch()
     const navigate = useNavigate()
     // userPassword = bcrypt.
     const [profileCredentials, setProfileCredentials] = useState({
-        bio
+        bio,
+        image
     })
+   // console.log("profileCredentials :",profileCredentials);
 
     useEffect(() => {
       dispatch(viewProfile(profile))
@@ -27,7 +30,8 @@ const EditProfile = () => {
     useEffect(() => {
         if(profile)
         setProfileCredentials({
-            bio
+            bio,
+            image
         })
     },[profile])
     
@@ -50,13 +54,18 @@ const EditProfile = () => {
     return(<>
     <form onSubmit={ updateHandler }>
         <Box sx={{ maxWidth: 500,maxHeight: 200 ,marginLeft:70,marginTop:10}}>
-          <TextField type={'text'} name='bio' value={profileCredentials.bio || ""}  onChange={changeCredentialHandler} placeholder='Bio' margin='normal' required/> 
+          <TextField type={'text'} name='bio' value={profileCredentials.bio || ""}  onChange={changeCredentialHandler} placeholder='Bio' margin='normal' required/>
+          <div className={classes.chooseFile}>
+          <Typography>Edit Profile Image</Typography>
+          <br></br>
+          <FileBase type={'file'} multiple={false} onDone={({ base64 }) =>   setProfileCredentials({ ...profileCredentials, image: base64 })} />
+        </div>
           <Button type='submit' variant='contained' color='warning' style={{margin : '9%'}}>Update</Button>
         </Box>
       </form>
     </>)
 }
-
+//setBlogDetails
 export default EditProfile
 
 

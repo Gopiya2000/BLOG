@@ -83,3 +83,18 @@ export let headerButtons = {
  
   borderRadius : '3px'
 }
+export let labelStyles ={
+  mb:1,
+  mt:2,
+  fontSize:'24px',
+  fontWeight:'bold'
+}
+export let chooseFile= {
+  width: "95%",
+  margin: "10px 0",
+}
+export let profileImage = {
+  paddingTop:'81.25%',
+  borderRadius:'50%',
+  margin:'28px'
+}

@@ -3,7 +3,8 @@ import jwtdecode from 'jwt-decode';
 
 const initialState = {
     user : '' ,
-    profile : ''
+    profile : '',
+    blog : ''
 }
 const tokenState = {
     userToken : localStorage.getItem("usersToken"),
@@ -30,6 +31,17 @@ const profilesReducer = (state = initialState,action) => {
         default : return state
     }
 }
+
+// const BlogReducer = (state=initialState,action) => {
+//     console.log(" auth type : ",action.type)
+//     switch(action.type){
+//         case 'SET_BLOG' : return {
+//             ...state,
+//             blog : action.payload
+//         }
+//         default : return state
+//     }
+// }
 
 // const profileReducer = (state = initialState,action) => {
 //     switch (action.type) {
@@ -73,5 +85,6 @@ const tokenUserReducer = (state = tokenState, action) => {
 export {
     userReducer,
     profilesReducer,
-    tokenUserReducer
+    tokenUserReducer,
+    //BlogReducer
 }

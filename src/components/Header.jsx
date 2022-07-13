@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link,useLocation } from 'react-router-dom';
+import { Link,Navigate,useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //import { authActions } from '../store';
 import { AppBar, Box, Button, Tabs, Tab, Toolbar, Typography } from '@mui/material';
 import { useStyles, appBar, loginTabs, loginBox, logoutButton, signupButton, LoginButton } from '../styles/styles'
 import { setLogout, setSignOut, setSignUp } from '../store/Actions/authActions';
 import { viewUser } from '../store/Actions/userActions';
-//import { deleteUserToken, viewUser } from '../store/Actions/userActions';
+import { deleteUserToken } from '../store/Actions/userActions';
 
 const Header = () => {
     const location = useLocation()
@@ -20,12 +20,15 @@ const Header = () => {
     const [selectTab, setSelectTab] = useState(0)
     const logoutHandler = () => {
         dispatch(deleteUserToken())
+        Navigate('/auth')
+
     }
     const signupHandler = () => {
         dispatch(setSignUp())
     }
     const loginHandler = () => {
         dispatch(setSignOut())
+        Navigate('/blogs')
     }
     useEffect(() => {
         if (location.pathname === "/" || location.pathname === '/blogs') {
@@ -43,13 +46,16 @@ const Header = () => {
         else if (location.pathname === "/followers/:id") {
             setSelectTab(4)
         }
-    }, [])
+       
+    }, [login])
     useEffect(() => {
         dispatch(viewUser())
-    },[dispatch])
+        console.log(login)
+    },[dispatch,login])
     return <AppBar position="sticky" style={appBar}>
 
         <Toolbar>
+            
             <Typography variant='h4'>Blog App</Typography>
             {login && <><Box className={classes.loginForm}>
                 <Tabs value={selectTab} textColor= 'inherit' onChange={(e, value) => setSelectTab(value)}>

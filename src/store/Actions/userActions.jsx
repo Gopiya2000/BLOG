@@ -1,4 +1,4 @@
-import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS,SET_PROFILE ,ADD_PROFILE} from "./authTypes"
+import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS,SET_PROFILE ,ADD_PROFILE, SET_BLOG} from "./authTypes"
 import axios from "axios"
 
 const setUserToken = (token) => {
@@ -31,11 +31,18 @@ const setProfile = (profile) => {
         payload : profile
     }
 }
+// const setBlog = (blog) => {
+//     console.log("BLOG :",blog);
+//     return{
+//         type : SET_BLOG,
+//         payload : blog
+//     }
+// }
 
 const storeUserToken = (user, type = 'login') => {
     console.log("store user token : ",user)
-    return(dispatch) => {
-        axios.post(`http://localhost:4567/api/user/${type}`,user)
+    return async(dispatch) => {
+        await axios.post(`http://localhost:4567/api/user/${type}`,user)
         .then( token => {
             if(type === 'login')
             {
@@ -132,6 +139,19 @@ const updateProfile = (profileDetails,_id) => {
     }
 }
 
+const updateBlog = (blogDetails,_id) => {
+    console.log("authActions blog details : ",blogDetails)
+    console.log("id : ",_id)
+    //id = id._id
+    return (dispatch) => {
+        axios.put(`http://localhost:4567/api/profile/update/${_id}`,blogDetails)
+        .then(() => { 
+            dispatch(setBlog(blogDetails))
+        })
+        .catch( err => console.log("error : ",err))
+    }
+}
+
 export {
     storeUserToken,
     retrieveUserToken,
@@ -140,5 +160,6 @@ export {
     updateUser,
     viewProfile,
     addProfile,
-    updateProfile
+    updateProfile,
+   updateBlog
 }

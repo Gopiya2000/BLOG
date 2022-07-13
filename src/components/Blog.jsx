@@ -84,6 +84,18 @@ const blogs = useSelector((state) => state.singleBlog)
                </Typography></>)
                 })}
               </CardContent>
+            <ButtonGroup>
+              <div key={blogs.blog._id}>
+                {console.log("blog._id",blogs.blog._id)}
+      <Button onClick={() => updateBlogHandler(blogs.blog._id)}>
+        <EditIcon color="primary" sx={{ "&:hover": { color: "green" } }} ></EditIcon>
+      </Button>
+      <Button>
+        <DeleteIcon onClick={() => deleteBlogHandler(blogs.blog._id)} color="warning" sx={{ "&:hover": { color: "green" } }}/>
+      </Button>
+      </div>
+    </ButtonGroup>
+           
             </Card>
 
           </div>

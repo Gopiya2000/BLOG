@@ -15,6 +15,9 @@ import EditUserDetails from "./components/EditUserDetails"
 import EditProfile from "./components/EditProfile";
 import AddProfile from "./components/AddProfile"
 import { useDispatch } from 'react-redux';
+import EditBlog from "./components/EditBlog";
+import Blog from "./components/Blog";
+import Protected from "./Protected";
 //import { store1 } from "../store1";
 
 
@@ -44,19 +47,21 @@ function App() {
     <main >
       <Routes>
         <Route path="/auth" element={<Auth />} />
-        <Route path="/blogs" element={<Home />} />
+        <Route path="/blogs" element={<Protected><Home /></Protected>} />
         {/* <Route path="/blogs">
           <Provider store={store1}>
           <Home />
           </Provider>
           </Route>   */}
-        <Route path="/blogs/add" element={<CreateBlog />} />
-        <Route path="/myBlogs" element={<MyBlog />} />
-        <Route path="/addProfile" element={<AddProfile />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<EditProfile />} />
-        <Route path="/userDetails" element={<UserDetails />} />
-        <Route path="/userDetails/edit" element={<EditUserDetails />} />
+        <Route path="/blogs/add" element={<Protected><CreateBlog /></Protected>} />
+        <Route path="/blogs/edit" element={<Protected><EditBlog /></Protected>} />
+        <Route path="/myBlogs" element={<Protected><MyBlog /></Protected>} />
+        <Route path="/thisBlog" element={<Protected><Blog /></Protected>} />
+        <Route path="/addProfile" element={<Protected><AddProfile /></Protected>} />
+        <Route path="/profile" element={<Protected><Profile /></Protected>} />
+        <Route path="/profile/edit" element={<Protected><EditProfile /></Protected>} />
+        <Route path="/userDetails" element={<Protected><UserDetails /></Protected>} />
+        <Route path="/userDetails/edit" element={<Protected><EditUserDetails /></Protected>} />
         {/* <Route path="/followers/:id" element={<Followers />} /> */}
       </Routes>
     </main>

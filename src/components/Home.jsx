@@ -4,10 +4,13 @@ import { viewBlogs } from '../store/Actions/blogActions';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-
+import moment from 'moment';
 import AddIcon from '@mui/icons-material/Add';
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PinchIcon from '@mui/icons-material/Pinch';
+import { ModeComment } from '@mui/icons-material';
+import { viewSingleBlog } from '../store/Actions/blogActions';
 
 
 
@@ -18,10 +21,9 @@ const blogs = useSelector((state) => state.blog.blogs)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-  //console.log("blogs:",blogs);
-
+  // useEffect(() => {
+  //   dispatch(viewBlogs())
+  // },[])
   useEffect(() => {
     const view = async () => {
       const all = await viewBlogs()
@@ -36,62 +38,43 @@ const blogs = useSelector((state) => state.blog.blogs)
     view()
   }
     , [])
-
-  //console.log("blogs : ",blogs)
   const addBlogHandler = () => {
     navigate('/blogs/add')
   }
-
-  // const addBlogHandler = () =>
-  // {
-  //     navigate('/blogs/add')
-  // }
   // const updateBlogHandler = (id) =>
   // {
-  //   const foundBlog = blogs.find((blog) => blog._id === id);
-  //     setBlogDetails({ ...foundBlog });
-  //   navigate('/blogs/add')
-  //   window.scrollTo({
-  //     top:0,
-  //     left:0,
-  //     behavior:"smooth"
-  //   })
+  //   navigate('/blogs/edit')
   // }
   // const deleteBlogHandler = (id) =>
   // {
   //   dispatch(deleteBlog(id))
   //   navigate('/blogs')
   // }
-
+const viewSingleBlogHandler = (id) => {
+  dispatch(viewSingleBlog(id))
+  navigate('/thisBlog')
+}
 
 
   return (
     <>
-      <Button onClick={() => addBlogHandler()} sx={{ marginLeft: "50%", marginTop: "2%", border: "2px solid blue", backgroundColor: "white", color: "black" }} >
-        <AddIcon></AddIcon> Add Blog
+    <Button>
+        <AddIcon onClick={() => addBlogHandler()} color="primary"  >Add Blog</AddIcon>
       </Button>
       {blogs && blogs.map((blog, index) => {
-        console.log("CARD INSIDE");
+        console.log("CARD INSIDE",blog,index);
         return (
           <div key={index}>
             {/* {" "} */}
             <Card style={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc" }}>
               <CardHeader
-                // avatar={
-                //   <Avatar style={{ bgcolor: "red" }} aria-label="recipe">
-                //     {blog.user}
-                //   </Avatar>
-                // }
                 title={blog.title}
-                //subheader="September 14, 2016"
               />
+
               <CardMedia
                 component="img"
                 height="194"
-                // accept="image/*" //jpg,jpeg,png,webp
-                // image='/src/images/image1.png'
                 image={blog.image}
-              // alt="Paella dish"
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -102,20 +85,23 @@ const blogs = useSelector((state) => state.blog.blogs)
                  #{tag}
                </Typography></>)
                 })}
-                {/* {blog.tag.map(value)=>(<p></p>)} */}
-
               </CardContent>
-            </Card>
-            <div key={blog._id}>
-              {/* <ButtonGroup>
-      <Button onClick={() => updateBlogHandler(blog._id)}>
+              <div key={blog._id}>
+                {console.log("blog._id",blog._id)}
+            <ButtonGroup>
+              <Button onClick={() => viewSingleBlogHandler(blog._id)}>
+              <PinchIcon color="primary" sx={{ "&:hover": { color: "green" } }} ></PinchIcon>
+              </Button>
+      {/* <Button onClick={() => updateBlogHandler(blog._id)}>
         <EditIcon color="primary" sx={{ "&:hover": { color: "green" } }} ></EditIcon>
       </Button>
       <Button>
         <DeleteIcon onClick={() => deleteBlogHandler(blog._id)} color="warning" sx={{ "&:hover": { color: "green" } }}/>
-      </Button>
-    </ButtonGroup> */}
+      </Button> */}
+    </ButtonGroup>
             </div>
+            </Card>
+
           </div>
         )
       }

@@ -3,19 +3,6 @@ const initialState = {
     signup : false,
     user : ''
 }
-
-// const tokenState = {
-//     token : localStorage.getItem("usersToken"),
-//     name : '',
-//     email : '',
-//     username : '',
-//     mobile : '',
-//     date : '',
-//     password : '',
-//     confirm : '',
-//     _id : ''
-// }
-
 const authReducer = (state = initialState, action) => {
     console.log("AUTH INSIDE");
     switch(action.type){
@@ -27,7 +14,9 @@ const authReducer = (state = initialState, action) => {
             login : true,
             user:action.data
         }
-        case 'SET_LOGOUT' : return {
+        case 'SET_LOGOUT' :
+           // localStorage.removeItem("usersToken")
+             return {
             ...state,
             login : false
         }
