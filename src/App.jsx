@@ -16,23 +16,18 @@ import EditProfile from "./components/EditProfile";
 import AddProfile from "./components/AddProfile"
 import { useDispatch } from 'react-redux';
 import EditBlog from "./components/EditBlog";
+import { retrieveUserToken } from "./store/Actions/userActions";
 import Blog from "./components/Blog";
 import Protected from "./Protected";
 //import { store1 } from "../store1";
 
 
 function App() {
-  // const [blogDetails, setBlogDetails] = useState({
-  //   title:'',
-  //   content:'',
-  //   image:'',
-  //   tag:'',
-  //   user:''})
 
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch()
-  // }, [dispatch])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(retrieveUserToken())
+  }, [dispatch])
   const login = useSelector(state => state.login);
   console.log(login);
 

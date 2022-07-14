@@ -32,34 +32,6 @@ const profilesReducer = (state = initialState,action) => {
     }
 }
 
-// const BlogReducer = (state=initialState,action) => {
-//     console.log(" auth type : ",action.type)
-//     switch(action.type){
-//         case 'SET_BLOG' : return {
-//             ...state,
-//             blog : action.payload
-//         }
-//         default : return state
-//     }
-// }
-
-// const profileReducer = (state = initialState,action) => {
-//     switch (action.type) {
-//         case "VIEW_PROFILE":
-//             console.log("PROFILE REDUCER INSIDE",action.profile)
-//             return action.profile
-//         case "ADD_PROFILE":
-//             return [action.profile.data, ...profile]
-//         case "UPDATE_PROFILE":
-//             return profile.map((PROFILE) =>
-//                 PROFILE._id === action.profile.data._id ? action.profile.data : profile)
-//         case "DELETE_PROFILE":
-//             return profile.filter((PROFILE) =>
-//                 PROFILE._id !== action.id)
-//         default:
-//             return state
-//     }
-// }
 const tokenUserReducer = (state = tokenState, action) => {
     console.log("token user type : ",action.type)
     switch(action.type){

@@ -98,3 +98,8 @@ export let profileImage = {
   borderRadius:'50%',
   margin:'28px'
 }
+export let signupError = {
+  text:{
+    color:'red'
+  }
+}

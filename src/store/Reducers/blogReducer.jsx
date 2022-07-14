@@ -4,9 +4,12 @@ const reducer = (blogs = [], action) => {
         case "VIEW_BLOGS":
             console.log("BLOG REDUCER INSIDE", action.blogs)
             return action.blogs
-            case "ADD_BLOG":
+        case "VIEW_USER_BLOGS":
+            console.log("view user blog reducer ",action.payload)
+            return action.payload
+        case "ADD_BLOG":
             return [action.blogs.data, ...blogs]
-            default:
+        default:
             return blogs
     }
 }

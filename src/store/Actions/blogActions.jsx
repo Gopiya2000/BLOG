@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { url } from '../../api';
-import { VIEW_SINGLE_BLOG,UPDATE_BLOG,DELETE_BLOG } from './authTypes';
+import { VIEW_SINGLE_BLOG,UPDATE_BLOG,DELETE_BLOG, SET_BLOG,VIEW_USER_BLOGS } from './authTypes';
 
 export const setViewSingleBlogs = (blog) => {
     return{
@@ -23,14 +23,21 @@ export const setDeleteSingleBlog = (id) => {
         payload : id
     }
 }
+export const setBlogByUser = (blogs) => {
+    return{
+        type : VIEW_USER_BLOGS,
+        payload : blogs
+    }
+}
+
 
 export const viewBlogs = async () => {
    return    await  axios.get(`${url}/api/blog/`)
 }
 
-   export const viewBlogsById = async () => {
-    return    await  axios.get(`${url}/api/blog//myBlog/${id}`)
-   }
+//    export const viewBlogsById = async (id) => {
+//     return   await  axios.get(`${url}/api/blog/${id}`)
+//    }
 
    
     //         .then(blogs => {
@@ -127,6 +134,27 @@ export const deleteBlog = (id) => {
         axios.delete(`${url}/api/blog/${id}`)
     }
 }
+
+export const viewUserBlog = (id) => {
+    return(dispatch) => {
+          axios.get(`${url}/api/blog/${id}`)
+         .then(blog => {
+        dispatch(setBlogByUser(blog.data));
+        console.log("blog.data : ", blog.data);
+    }) 
+    .catch (err => {
+        return console.log(err);
+    })
+}
+}
+
+
+// export const viewUserBlog = (id) => {
+//     return(dispatch)=>{
+//         axios.get(`${url}/api/blog/${id}`)
+//     }
+// }
+
 
 
 // export const updateBlog = (blogDetails,_id) => {

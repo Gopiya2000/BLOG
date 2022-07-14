@@ -132,7 +132,7 @@ const updateProfile = (profileDetails,_id) => {
     //id = id._id
     return (dispatch) => {
         axios.put(`http://localhost:4567/api/profile/updateProfile/${_id}`,profileDetails)
-        .then(() => { 
+        .then(() => { Savitha34233
             dispatch(setProfile(profileDetails))
         })
         .catch( err => console.log("error : ",err))
@@ -151,6 +151,8 @@ const updateBlog = (blogDetails,_id) => {
         .catch( err => console.log("error : ",err))
     }
 }
+
+
 
 export {
     storeUserToken,

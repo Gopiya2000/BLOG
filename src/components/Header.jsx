@@ -10,7 +10,7 @@ import { deleteUserToken } from '../store/Actions/userActions';
 
 const Header = () => {
     const location = useLocation()
-    //const user = useSelector( state => state.userTokener )
+    const userId = useSelector( state => state.userTokener._id )
     const classes = useStyles()
     const dispatch = useDispatch();
     // const user = useSelector( state => { console.log(state)
@@ -57,7 +57,7 @@ const Header = () => {
         <Toolbar>
             
             <Typography variant='h4'>Blog App</Typography>
-            {login && <><Box className={classes.loginForm}>
+            {userId && <><Box className={classes.loginForm}>
                 <Tabs value={selectTab} textColor= 'inherit' onChange={(e, value) => setSelectTab(value)}>
                     <Tab LinkComponent={Link} to="/blogs" label="Home" />
                     {/* <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" /> */}
@@ -70,10 +70,10 @@ const Header = () => {
                 </Tabs>
             </Box></>}
             <Box style={loginBox}>
-                {!login && <>
+                {!userId && <>
                     <Button onClick={loginHandler} LinkComponent={Link} to="/auth" variant='contained' style={LoginButton}>Login</Button>
                     <Button onClick={signupHandler} LinkComponent={Link} to="/auth" variant='contained' style={signupButton}>Signup</Button></>}
-                {login && (
+                {userId && (
                     <Button
                     onClick={logoutHandler}
                         LinkComponent={Link}

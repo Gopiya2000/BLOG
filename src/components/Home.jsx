@@ -17,8 +17,9 @@ import { viewSingleBlog } from '../store/Actions/blogActions';
 const Home = () => {
 
 const blogs = useSelector((state) => state.blog.blogs)
-  console.log(blogs)  
-
+  console.log("Home blogs :",blogs)  
+  const profile = useSelector( (state) => state.profileDetails)
+console.log("profile : ",profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // useEffect(() => {
@@ -68,6 +69,11 @@ const viewSingleBlogHandler = (id) => {
             {/* {" "} */}
             <Card style={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc" }}>
               <CardHeader
+              avatar={
+                <Avatar aria-label="recipe">
+                {profile.image}
+                </Avatar>
+              }
                 title={blog.title}
               />
 
