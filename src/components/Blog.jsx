@@ -10,21 +10,6 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 const Blog = () => {
-    
-  // const userId = useSelector( state => state.userTokener._id )
-  // console.log("userId :",userId);
-  // const profile = useSelector( (state) => state.profileDetails.profile)
-  // //const profileAll = profile[0];
-  // //console.log("profileAll : ",profileAll);
-  // console.log("profile object  : ",profile)
-  // console.log("profile object[0]  : ",profile)
-  // const dispatch = useDispatch()
-  //   useEffect(() => {
-  //     dispatch(viewProfile(userId))
-  //   },[userId])
-
-// const blogId = useSelector( state => state.blogDetails.blog._id )
-// console.log("BlogId :",blogId);
 const blogs = useSelector((state) => state.singleBlog)
   console.log("blogs :",blogs)  
 

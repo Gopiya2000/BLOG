@@ -98,7 +98,7 @@ export const addBlog = (blog) => {
 export const viewSingleBlog = (id) =>{
     console.log("get blog by id", id)
     return (dispatch) => {
-        axios.get(`${url}/api/blog/${id}`)
+        axios.get(`${url}/api/blog/single/${id}`)
             .then(blog => {
                 console.log("view single blog is ",blog.data)
                 dispatch({
