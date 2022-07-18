@@ -34,7 +34,7 @@ console.log("profileDetails",profileDetails);
         event.preventDefault()
         console.log(profileDetails)
        dispatch(addProfile(profileDetails))
-      navigate('/profile')
+      navigate('/blogs')
         }
 return(
             <form onSubmit={submitHandler}>

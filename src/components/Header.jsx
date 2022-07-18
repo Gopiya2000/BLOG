@@ -62,7 +62,7 @@ const Header = () => {
                     <Tab LinkComponent={Link} to="/blogs" label="Home" />
                     {/* <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" /> */}
                     <Tab LinkComponent={Link} to="/myBlogs" label="My Blog" />
-                    <Tab LinkComponent={Link} to="/addProfile" label="Add Profile" />
+                    {/* <Tab LinkComponent={Link} to="/addProfile" label="Add Profile" /> */}
                     <Tab LinkComponent={Link} to="/profile" label="Profile" />
                     <Tab LinkComponent={Link} to="/userDetails" label="My Details" />
                     {/* <Tab LinkComponent={Link} to="/userDetails/edit" label="Edit Details" /> */}

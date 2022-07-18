@@ -30,8 +30,6 @@ import  {viewUser}  from '../store/Actions/userActions'
             <SnackbarContent message={user.username} action="USERNAME" sx={{backgroundColor:"#2E3B55", color:'white'}} />
             <SnackbarContent message={user.mobile} action="MOBILE" sx={{backgroundColor:"#2E3B55", color:'white'}} />
             <SnackbarContent message={user.date} action="DATE" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
-            <SnackbarContent message={user.password} action="PASSWORD" sx={{backgroundColor:"#2E3B55", color:'white'}}/>
-            <SnackbarContent message={user.confirm} action="CONFIRM" sx={{backgroundColor:"#2E3B55", color:'white'}} />
         </Stack>
         <Button LinkComponent={Link} to='/userDetails/edit' variant='outlined' sx={{borderRadius: 4, marginLeft: 20, marginTop: 3 }} >Edit</Button>
         </Box>

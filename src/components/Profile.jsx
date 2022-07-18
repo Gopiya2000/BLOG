@@ -19,7 +19,15 @@ import { useStyles,profileImage } from "../styles/styles"
     useEffect(() => {
       dispatch(viewProfile(userId))
     },[userId])
-    return(<>
+    if(profile == undefined)
+    {
+    return(
+      <Button LinkComponent={Link} to='/addProfile' variant='outlined'sx={{borderRadius: 4, marginLeft: 20, marginTop: 3 }}>+ Add</Button>
+    )
+  }
+  else{
+    return(
+      <>
       <Box sx={{
             width: 400,
             height: 370,
@@ -38,8 +46,10 @@ import { useStyles,profileImage } from "../styles/styles"
               />
         <Button LinkComponent={Link} to='/profile/edit' variant='outlined'sx={{borderRadius: 4, marginLeft: 20, marginTop: 3 }}>Edit</Button>
         </Box>
-    </>)
- }
+    </>
+    )
+  }
+}
 
  export default Profile;
 
