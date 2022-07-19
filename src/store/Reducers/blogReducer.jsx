@@ -5,7 +5,7 @@ const reducer = (blogs = [], action) => {
             console.log("BLOG REDUCER INSIDE", action.blogs)
             return action.blogs
         case "VIEW_USER_BLOGS":
-            console.log("view user blog reducer ",action.payload)
+            console.log("view user blog reducer ", action.payload)
             return action.payload
         case "ADD_BLOG":
             return [action.blogs.data, ...blogs]
@@ -13,8 +13,8 @@ const reducer = (blogs = [], action) => {
             return blogs
     }
 }
-    const SingleBlogreducer = (blog = [], action) => {
-        console.log("SINGLE BLOG REDUCER");
+const SingleBlogreducer = (blog = [], action) => {
+    console.log("SINGLE BLOG REDUCER");
     switch (action.type) {
         case "VIEW_SINGLE_BLOG":
             console.log("BLOG REDUCER INSIDE", action.blog)
@@ -33,70 +33,5 @@ const reducer = (blogs = [], action) => {
 export {
     SingleBlogreducer,
     reducer
-} 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const initialState = {
-//     blogs: [],
-//     blog: {}
-// }
-
-// const reducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case "VIEW_BLOGS": return {
-//                 ...state,
-//                 blogs: action.payload
-//         }
-//         case "VIEW_SINGLE_BLOG":
-//             return {
-//                 ...state,
-//                 blog: action.payload
-//             };
-//         case "ADD_BLOG":
-//             return {
-//                 ...state,
-//                 blog: action.payload
-//             }
-//         case "UPDATE_BLOGS":
-//             return {
-//                 blog:blogs.map((blog) =>
-//                 blog._id === action.blogs.data._id ? action.blogs.data : blog
-//                 )}
-//                 case "DELETE_BLOGS":
-//                     return {
-//                         blog : blogs.filter((blog) =>
-//                         blog._id !== action.id)
-//                     } 
-//                     default : return state 
-//     }
-// }
-
-
-   

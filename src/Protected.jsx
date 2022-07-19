@@ -8,9 +8,8 @@ const Protected = ({ children }) => {
         const token = jwtDecode(isAuthenticated)
         return children
     }
-    else{
-        console.log("back to home")
-        return <Navigate to="/"/>;
+    else {
+        return <Navigate to="/" />;
     }
 }
 

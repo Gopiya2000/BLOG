@@ -2,11 +2,9 @@ import { Button, TextField, Typography, Box } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
-//import { authActions } from '../store';
-//import { useNavigate } from 'react-router';
-import {useForm} from 'react-hook-form';
-import {useStyles,fieldTypography,authSubmit,changeButton,signupError} from '../styles/styles';
+import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useStyles, fieldTypography, authSubmit, changeButton, signupError } from '../styles/styles';
 import { setLogin, setSignOut, toggleSignup } from '../store/Actions/authActions';
 import { storeUserToken } from '../store/Actions/userActions';
 
@@ -14,11 +12,10 @@ const Auth = () => {
   const classes = useStyles()
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {register,handleSubmit,formState : {errors},watch,reset} = useForm({
-    mode : 'onChange'
+  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm({
+    mode: 'onChange'
   })
-  //const [formError,setFormError] = use
-  const signup = useSelector( state => state.auth.signup )
+  const signup = useSelector(state => state.auth.signup)
   const [Inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -28,15 +25,7 @@ const Auth = () => {
     password: "",
     confirm: ""
   })
-  // const [signup, setsignup] = useState(false)
-  // const handleChange = (e) => {
-  //   setInputs((prevState) => ({
-  //     ...prevState,
-  //     [e.target.name]: e.target.value
-  //   }))
-  // }
-  //const { name,email,username,mobile,date,password,confirm} = Inputs;
-  const sendRequest = async (type="login") => {
+  const sendRequest = async (type = "login") => {
     console.log("signup")
     const res = await axios.post(`http://localhost:4567/api/user/${type}`, {
       name: Inputs.name,
@@ -49,119 +38,126 @@ const Auth = () => {
     }
     ).catch((err) => console.log(err));
     const data = await res.data;
-    console.log("data : ",data)
+    console.log("data : ", data)
     return data;
   };
 
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     }))
   }
   const signupHandler = () => {
     dispatch(toggleSignup())
   }
 
-  const { message, error } = useSelector( state => state.userTokener )
+  const { message, error } = useSelector(state => state.userTokener)
   const submitHandler = (e) => {
     // e.preventDefault()
     console.log("submit")
-    console.log("inputs are",Inputs);
-    if(signup){
-      
+    console.log("inputs are", Inputs);
+    if (signup) {
+
       sendRequest("signup")
-      .then(()=>{console.log("ho")
-      dispatch(storeUserToken(Inputs,'signup'))
-        dispatch(setSignOut())})
-      .then(data => console.log(data))
+        .then(() => {
+          console.log("ho")
+          dispatch(storeUserToken(Inputs, 'signup'))
+          dispatch(setSignOut())
+        })
+        .then(data => console.log(data))
       navigate("/auth")
     }
-    else{
+    else {
       sendRequest()
-      .then((data)=>{
-        console.log("loginn")
-      dispatch(storeUserToken(Inputs))
-      dispatch(setLogin(data))
-      // .then(data => console.log(data))
-      navigate("/blogs")
-      }
-      )
+        .then((data) => {
+          console.log("loginn")
+          dispatch(storeUserToken(Inputs))
+          dispatch(setLogin(data))
+          navigate("/blogs")
+        }
+        )
     }
-    }
-    const password = watch('confirm')
+  }
+  const password = watch('confirm')
   return (
     <div>
       <form onSubmit={handleSubmit(submitHandler)}>
         <Box className={classes.submitForm} >
-          <Typography variant='h4'style={fieldTypography}>
+          <Typography variant='h4' style={fieldTypography}>
             {signup ? "Signup" : "Login"}
           </Typography>
           {message && <small>{message}</small>}
-          {signup && <TextField 
-          {...register('name',{required : 'Name required',
-        pattern:{
-          value : /^[a-zA-Z ]+$/,
-          message : 'Name should contain only alphabets'
-        }
-      })}
-          type={'text'} onChange={handleChange} value={Inputs.name} placeholder='name' margin='normal' required />}
+          {signup && <TextField
+            {...register('name', {
+              required: 'Name required',
+              pattern: {
+                value: /^[a-zA-Z ]+$/,
+                message: 'Name should contain only alphabets'
+              }
+            })}
+            type={'text'} onChange={handleChange} value={Inputs.name} placeholder='name' margin='normal' required />}
           {errors.name && <small>{errors.name.message}</small>}
           {signup && <TextField
-           {...register('email',{required : 'Email is required',
-           pattern:{
-             value : /^([a-zA-Z0-9-_\.]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,10})(\.[a-zA-Z]{2,8})?$/,
-             message : 'Email should be valid.Eg:gopiya000@gmail.com'
-           }
-         })}
-          onChange={handleChange} value={Inputs.email} type={"email"} placeholder='email' margin='normal' required />}
+            {...register('email', {
+              required: 'Email is required',
+              pattern: {
+                value: /^([a-zA-Z0-9-_\.]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,10})(\.[a-zA-Z]{2,8})?$/,
+                message: 'Email should be valid.Eg:gopiya000@gmail.com'
+              }
+            })}
+            onChange={handleChange} value={Inputs.email} type={"email"} placeholder='email' margin='normal' required />}
           {errors.email && <small>{errors.email.message}</small>}
           <TextField
-          {...register('username',{required : 'Username is required',
-          pattern:{
-            value : /^[a-zA-Z0-9]{3,18}$/,
-            message : 'Username must has minimum 3 and maximum 18 characters'
-          }
-        })}
-        type={'text'} name='username' onChange={handleChange} value={Inputs.username} placeholder='username' margin='normal' required />
+            {...register('username', {
+              required: 'Username is required',
+              pattern: {
+                value: /^[a-zA-Z0-9]{3,18}$/,
+                message: 'Username must has minimum 3 and maximum 18 characters'
+              }
+            })}
+            type={'text'} name='username' onChange={handleChange} value={Inputs.username} placeholder='username' margin='normal' required />
           {errors.username && <small>{errors.username.message}</small>}
           {signup && <TextField
-          {...register('mobile',{required : 'Mobile is required',
-          pattern:{
-            value :/^(\+91-)[6-9]\d{9}$/,
-            message : 'Mobile number should contain 10 digit number along with +91(Eg:+91-9876543212)'
-          }
-        })}
-        type={'text'} name='mobile' onChange={handleChange} value={Inputs.mobile} placeholder='mobile' margin='normal' required />}
+            {...register('mobile', {
+              required: 'Mobile is required',
+              pattern: {
+                value: /^(\+91-)[6-9]\d{9}$/,
+                message: 'Mobile number should contain 10 digit number along with +91(Eg:+91-9876543212)'
+              }
+            })}
+            type={'text'} name='mobile' onChange={handleChange} value={Inputs.mobile} placeholder='mobile' margin='normal' required />}
           {errors.mobile && <small>{errors.mobile.message}</small>}
           {signup && <TextField
-          {...register('date',{required : 'DOB is required',
-          pattern:{
-            value : /(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/,
-            message : 'The date should be in this format DD/MM/YYYY'
-          }
-        })}
-        type={'text'} name='date' onChange={handleChange} value={Inputs.date} placeholder='DOB' margin='normal' required />}
+            {...register('date', {
+              required: 'DOB is required',
+              pattern: {
+                value: /(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/,
+                message: 'The date should be in this format DD/MM/YYYY'
+              }
+            })}
+            type={'text'} name='date' onChange={handleChange} value={Inputs.date} placeholder='DOB' margin='normal' required />}
           {errors.date && <small>{errors.date.message}</small>}
           <TextField
-          {...register('password',{required : 'Password is required',
-          pattern:{
-            value : /^[a-zA-Z0-9]{8,12}$/,
-            message : 'Password length should be minimum 8 and maximum 12'
-          }
-        })}
-         name='password' onChange={handleChange} value={Inputs.password} type={'password'} placeholder='password' margin='normal' required />
-         {errors.password && <small>{errors.password.message}</small>}
+            {...register('password', {
+              required: 'Password is required',
+              pattern: {
+                value: /^[a-zA-Z0-9]{8,12}$/,
+                message: 'Password length should be minimum 8 and maximum 12'
+              }
+            })}
+            name='password' onChange={handleChange} value={Inputs.password} type={'password'} placeholder='password' margin='normal' required />
+          {errors.password && <small>{errors.password.message}</small>}
           {signup && <TextField
-          {...register('confirm',{required : 'Confirm is required',
-          validate : confirm => confirm === password || 'Confirm password doesnot match the password'
-        })}
-         name='confirm' onChange={handleChange} value={Inputs.confirm} type={'password'} placeholder='confirm password' margin='normal' required />}
+            {...register('confirm', {
+              required: 'Confirm is required',
+              validate: confirm => confirm === password || 'Confirm password doesnot match the password'
+            })}
+            name='confirm' onChange={handleChange} value={Inputs.confirm} type={'password'} placeholder='confirm password' margin='normal' required />}
           {errors.confirm && <small>{errors.confirm.message}</small>}
-          <Button type='submit' variant='contained'style={authSubmit}>{ signup ? "Signup" : "Login"}</Button>
-          {/* <Button onClick={() => setsignup(!signup)}style={changeButton}> </Button> */}
-          { !signup && <Typography>Don't have an account ?</Typography> }
-          <Link onClick={signupHandler} to='/auth'>{ !signup && "Signup"}</Link>
+          <Button type='submit' variant='contained' style={authSubmit}>{signup ? "Signup" : "Login"}</Button>
+          {!signup && <Typography>Don't have an account ?</Typography>}
+          <Link onClick={signupHandler} to='/auth'>{!signup && "Signup"}</Link>
         </Box>
       </form>
     </div>
@@ -170,4 +166,3 @@ const Auth = () => {
 
 export default Auth;
 
-//name, email, username, mobile, date, password, confirm

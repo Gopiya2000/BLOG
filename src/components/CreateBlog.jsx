@@ -15,7 +15,6 @@ export const CreateBlog = () => {
         return state.auth.user.existingUser
     })
     console.log("user",user)
-    // const[image,setImage]=useState("/blogimg.png")
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [blogDetails, setblogDetails] = useState({

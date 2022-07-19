@@ -80,19 +80,6 @@ export const addBlog = (blog) => {
     }
 }
 
-// export const viewSingleBlog = (id) =>{
-//     console.log("get blog by id", id)
-//     return (dispatch) => {
-//         axios.get(`${url}/api/blog/${id}`)
-//             // .then((blog) => {
-//             //     dispatch(setViewSingleBlogs(blog.data)
-//             //     )
-//             // })
-//             .catch(err => {
-//                 console.log("error", err.message)
-//             })
-//     }
-// }
 
 
 export const viewSingleBlog = (id) =>{
@@ -148,53 +135,3 @@ export const viewUserBlog = (id) => {
 }
 }
 
-
-// export const viewUserBlog = (id) => {
-//     return(dispatch)=>{
-//         axios.get(`${url}/api/blog/${id}`)
-//     }
-// }
-
-
-
-// export const updateBlog = (blogDetails,_id) => {
-//     console.log("authActions blog details : ",blogDetails)
-//     console.log("id : ",_id)
-//     //id = id._id
-//     return (dispatch) => {
-//         axios.put(`${url}/api/profile/update/${_id}`,blogDetails)
-//         .then(() => { 
-//             dispatch(setBlog(blogDetails))
-//         })
-//         .catch( err => console.log("error : ",err))
-//     }
-// }
-
-// const updateBlog = (blogDetails,_id) => {
-//     console.log("authActions blog details : ",blogDetails)
-//     console.log("id : ",_id)
-//     //id = id._id
-//     return (dispatch) => {
-//         axios.put(`${url}/api/profile/update/${_id}`,blogDetails)
-//         .then(() => { 
-//             dispatch(setBlog(blogDetails))
-//         })
-//         .catch( err => console.log("error : ",err))
-//     }
-// }
-
-
-// export const deleteBlog = (id) => {
-//     return (dispatch) => {
-//         axios.delete(`${url}/api/blog/${id}`)
-//             .then(() => {
-//                 dispatch({
-//                     type: "DELETE_BLOG",
-//                     id
-//                 })
-//             })
-//             .catch(err => {
-//                 console.log("error", err.message)
-//             })
-//     }
-// }
