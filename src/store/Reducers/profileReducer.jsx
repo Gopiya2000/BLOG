@@ -1,8 +1,6 @@
 const profileReducer = (profiles = [], action) => {
-    console.log("PROFILE REDUCER");
     switch (action.type) {
         case "VIEW_PROFILE":
-            console.log("PROFILE REDUCER INSIDE", action.profiles)
             return action.profiles
         case "ADD_PROFILE":
             return [action.profiles.data, ...profiles]

@@ -7,25 +7,28 @@ const setUserToken = (token) => {
         token
     }
 }
+
 const setUserRetrieveToken = (token) => {
     return {
         type: SET_USER_RETRIEVE_TOKEN,
         token
     }
 }
+
 const deleteUserToken = () => {
     return {
         type: DELETE_USER_TOKEN
     }
 }
+
 const setDetails = (user) => {
     return {
         type: SET_DETAILS,
         payload: user
     }
 }
+
 const setProfile = (profile) => {
-    console.log("PROFILE :", profile);
     return {
         type: SET_PROFILE,
         payload: profile
@@ -33,13 +36,10 @@ const setProfile = (profile) => {
 }
 
 const storeUserToken = (user, type = 'login') => {
-    console.log("store user token : ", user)
     return async (dispatch) => {
         await axios.post(`http://localhost:4567/api/user/${type}`, user)
             .then(token => {
                 if (type === 'login') {
-                    console.log("token is ", token.data.token)
-                    console.log("entered local storage")
                     localStorage.setItem("usersToken", token.data.token)
                     dispatch(setUserToken(token.data.token))
                 }
@@ -47,22 +47,20 @@ const storeUserToken = (user, type = 'login') => {
             .catch(err => console.log(err.response))
     }
 }
-const retrieveUserToken = () => {
 
+const retrieveUserToken = () => {
     return (dispatch, getState) => {
         const token = getState().userTokener.userToken
-        console.log("retrive user token : ", token)
         if (token) {
             dispatch(setUserRetrieveToken(token))
         }
     }
 }
+
 const viewUser = (id) => {
-    console.log("received id : ", id)
     return (dispatch) => {
         axios.get(`http://localhost:4567/api/user/${id}`)
             .then((user) => {
-                console.log("view user : ", user.data.user)
                 dispatch(setDetails(user.data.user))
             })
             .catch(err => console.log(err))
@@ -70,8 +68,6 @@ const viewUser = (id) => {
 }
 
 const updateUser = (userDetails, id) => {
-    console.log("authActions user details : ", userDetails)
-    console.log("id : ", id)
     return (dispatch) => {
         axios.put(`http://localhost:4567/api/user/details/${id}`, userDetails)
             .then(() => {
@@ -82,31 +78,24 @@ const updateUser = (userDetails, id) => {
 }
 
 const addProfile = async (profile) => {
-    console.log("profile", profile);
-    return await axios.post(`http://localhost:4567/api/profile/addProfile`, profile)
+    return await axios.post(`http://localhost:4567/api/profile`, profile)
 
 }
 
 const viewProfile = (id) => {
-    console.log("received id : ", id)
     return (dispatch) => {
         axios.get(`http://localhost:4567/api/profile/?user=${id}`)
             .then((profile) => {
                 dispatch(setProfile(profile.data[0]))
-                console.log("profile.data : ", profile.data[0]);
             })
             .catch(err => console.log(err))
     }
 }
 
-
 const updateProfile = (profileDetails, _id) => {
-    console.log("authActions profile details : ", profileDetails)
-    console.log("id : ", _id)
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/profile/updateProfile/${_id}`, profileDetails)
+        axios.put(`http://localhost:4567/api/profile/update-profile/${_id}`, profileDetails)
             .then(() => {
-                Savitha34233
                 dispatch(setProfile(profileDetails))
             })
             .catch(err => console.log("error : ", err))
@@ -114,8 +103,6 @@ const updateProfile = (profileDetails, _id) => {
 }
 
 const updateBlog = (blogDetails, _id) => {
-    console.log("authActions blog details : ", blogDetails)
-    console.log("id : ", _id)
     return (dispatch) => {
         axios.put(`http://localhost:4567/api/profile/update/${_id}`, blogDetails)
             .then(() => {
@@ -124,8 +111,6 @@ const updateBlog = (blogDetails, _id) => {
             .catch(err => console.log("error : ", err))
     }
 }
-
-
 
 export {
     storeUserToken,

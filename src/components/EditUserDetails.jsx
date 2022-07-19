@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 import { useStyles } from "../styles/styles"
 import { viewUser, updateUser } from "../store/Actions/userActions"
+
 const EditUserDetails = () => {
+
     const classes = useStyles
     const userId = useSelector(state => state.userTokener._id)
     const user = useSelector(state => state.auth.user.existingUser)
-    console.log("user from edit user profile", user)
     const { name, email, username, mobile, date, password, confirm } = user
-    console.log("userconsole", user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const [userCredentials, setUserCredentials] = useState({
         name,
         email,
@@ -49,14 +50,12 @@ const EditUserDetails = () => {
         ))
     }
 
-
-
     const updateHandler = (event) => {
         event.preventDefault()
         dispatch(updateUser(userCredentials, user._id))//user._id
-        navigate('/userDetails')
-        console.log("userCredentials :", userCredentials.value);
+        navigate('/user-details')
     }
+
     return (<>
         <form onSubmit={updateHandler}>
             <Box spacing={1} sx={{ maxWidth: 400, marginLeft: 70 }}>

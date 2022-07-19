@@ -18,43 +18,40 @@ import { retrieveUserToken } from "./store/Actions/userActions";
 import Blog from "./components/Blog";
 import Protected from "./Protected";
 
-
 function App() {
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(retrieveUserToken())
-  }, [dispatch])
-  const login = useSelector(state => state.login);
-  console.log(login);
+	const dispatch = useDispatch()
 
-  return (
-    <>
-      {
-        <React.Fragment >
+	useEffect(() => {
+		dispatch(retrieveUserToken())
+	}, [dispatch])
 
-          <header>
-            <Header />
-          </header>
-          <main >
-            <Routes>
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/blogs" element={<Protected><Home /></Protected>} />
-              <Route path="/blogs/add" element={<Protected><CreateBlog /></Protected>} />
-              <Route path="/blogs/edit" element={<Protected><EditBlog /></Protected>} />
-              <Route path="/myBlogs" element={<Protected><MyBlog /></Protected>} />
-              <Route path="/thisBlog" element={<Protected><Blog /></Protected>} />
-              <Route path="/addProfile" element={<Protected><AddProfile /></Protected>} />
-              <Route path="/profile" element={<Protected><Profile /></Protected>} />
-              <Route path="/profile/edit" element={<Protected><EditProfile /></Protected>} />
-              <Route path="/userDetails" element={<Protected><UserDetails /></Protected>} />
-              <Route path="/userDetails/edit" element={<Protected><EditUserDetails /></Protected>} />
-            </Routes>
-          </main>
-        </React.Fragment>
-      }
-    </>
-  )
+	const login = useSelector(state => state.login);
+
+	return (
+		<>
+			<React.Fragment >
+				<header>
+					<Header />
+				</header>
+				<main >
+					<Routes>
+						<Route path="/auth" element={<Auth />} />
+						<Route path="/blogs" element={<Protected><Home /></Protected>} />
+						<Route path="/blogs/add" element={<Protected><CreateBlog /></Protected>} />
+						<Route path="/blogs/edit" element={<Protected><EditBlog /></Protected>} />
+						<Route path="/my-blogs" element={<Protected><MyBlog /></Protected>} />
+						<Route path="/this-blog" element={<Protected><Blog /></Protected>} />
+						<Route path="/add-profile" element={<Protected><AddProfile /></Protected>} />
+						<Route path="/profile" element={<Protected><Profile /></Protected>} />
+						<Route path="/profile/edit" element={<Protected><EditProfile /></Protected>} />
+						<Route path="/user-details" element={<Protected><UserDetails /></Protected>} />
+						<Route path="/user-details/edit" element={<Protected><EditUserDetails /></Protected>} />
+					</Routes>
+				</main>
+			</React.Fragment>
+		</>
+	)
 }
 
 

@@ -7,14 +7,15 @@ import { useStyles, labelStyles } from "../styles/styles"
 import { viewSingleBlog } from "../store/Actions/blogActions"
 import { viewBlogs } from "../store/Actions/blogActions"
 import { updateBlog } from "../store/Actions/blogActions"
+
 const EditBlog = () => {
+
     const classes = useStyles
     const blog = useSelector(state => state.singleBlog)
-    console.log("user from edit blog", blog[0].blog._id)
     const { title, content, tag } = blog[0].blog
-    console.log("userconsole", title);
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const [blogCredentials, setblogCredentials] = useState({
         title,
         content,
@@ -24,7 +25,7 @@ const EditBlog = () => {
     useEffect(() => {
         dispatch(viewSingleBlog(blog[0].blog._id))
     }, [dispatch])
-    console.log("blog.blog :", blog[0].blog);
+
     useEffect(() => {
         if (blog)
             setblogCredentials({
@@ -43,16 +44,12 @@ const EditBlog = () => {
         ))
     }
 
-
-
     const updateHandler = (event) => {
         event.preventDefault()
-        console.log("dispatch update");
         dispatch(updateBlog(blogCredentials, blog[0].blog._id))
-        console.log("blog_id : ", blog[0].blog._id);//user._id
-        navigate('/blogs')
-        console.log("blogCredentials :", blogCredentials.value);
+        navigate('/my-blogs')
     }
+
     return (
         <>
             <form onSubmit={updateHandler}>

@@ -1,7 +1,7 @@
 {
   "name": "webpack-react",
   "version": "1.0.0",
-  "description": "React App without create-react-app",
+  "description": "Blog application",
   "main": "index.jsx",
   "scripts": {
     "start": "webpack-dev-server .",
@@ -10,7 +10,7 @@
   "keywords": [
     "webpack-react"
   ],
-  "author": "Nabendu Biswas",
+  "author": "Gopiya",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.10",

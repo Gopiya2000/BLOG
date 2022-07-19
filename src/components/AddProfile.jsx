@@ -7,21 +7,22 @@ import { addProfile } from '../store/Actions/userActions'
 import FileBase from "react-file-base64"
 import { useStyles, chooseFile, labelStyles } from '../styles/styles'
 
-
 const AddProfile = () => {
+
     const classes = useStyles()
+
     const user = useSelector((state) => {
-        console.log("state", state);
         return state.auth.user.existingUser
     })
-    console.log("user", user)
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const [profileDetails, setProfileDetails] = useState({
         bio: '',
         user: ''
     })
-    console.log("profileDetails", profileDetails);
+
     const changeHandler = (event) => {
         let newState = { [event.target.name]: event.target.value }
         setProfileDetails((prevState) => ({
@@ -30,13 +31,12 @@ const AddProfile = () => {
         }))
     }
 
-
     const submitHandler = (event) => {
         event.preventDefault()
-        console.log(profileDetails)
         dispatch(addProfile(profileDetails))
         navigate('/blogs')
     }
+
     return (
         <form onSubmit={submitHandler}>
             <Box border={3} borderColor="#2E3B55" borderRadius={10} boxShadow="10px 10px 20px #ccc" padding={3} margin={3} display='flex' flexDirection={'column'} width={"80%"} >
@@ -53,8 +53,6 @@ const AddProfile = () => {
             </Box>
         </form>
     )
-
-
 }
 
 export default AddProfile;

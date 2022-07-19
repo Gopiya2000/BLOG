@@ -4,11 +4,8 @@ const initialState = {
     user: ''
 }
 const authReducer = (state = initialState, action) => {
-    console.log("AUTH INSIDE");
     switch (action.type) {
-
         case 'SET_LOGIN':
-            console.log("SetLogin", action.data);
             return {
                 ...state,
                 login: true,
@@ -34,6 +31,5 @@ const authReducer = (state = initialState, action) => {
         default: return state
     }
 }
-
 
 export default authReducer
