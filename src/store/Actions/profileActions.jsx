@@ -12,7 +12,7 @@ const setProfile = (profile) => {
 
 export const viewProfile = (id) => {
     return (dispatch) => {
-        axios.get(`http://localhost:4567/api/profile/?user=${id}`)
+        axios.get(`${url}/api/profile/?user=${id}`)
             .then((profile) => {
                 dispatch(setProfile(profile.data[0]))
             })

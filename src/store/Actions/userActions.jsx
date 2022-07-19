@@ -1,5 +1,6 @@
 import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS, SET_PROFILE, ADD_PROFILE, SET_BLOG } from "./authTypes"
 import axios from "axios"
+import { url } from '../../api';
 
 const setUserToken = (token) => {
     return {
@@ -37,7 +38,7 @@ const setProfile = (profile) => {
 
 const storeUserToken = (user, type = 'login') => {
     return async (dispatch) => {
-        await axios.post(`http://localhost:4567/api/user/${type}`, user)
+        await axios.post(`${url}/api/user/${type}`, user)
             .then(token => {
                 if (type === 'login') {
                     localStorage.setItem("usersToken", token.data.token)
@@ -59,7 +60,7 @@ const retrieveUserToken = () => {
 
 const viewUser = (id) => {
     return (dispatch) => {
-        axios.get(`http://localhost:4567/api/user/${id}`)
+        axios.get(`${url}/api/user/${id}`)
             .then((user) => {
                 dispatch(setDetails(user.data.user))
             })
@@ -69,7 +70,7 @@ const viewUser = (id) => {
 
 const updateUser = (userDetails, id) => {
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/user/details/${id}`, userDetails)
+        axios.put(`${url}/api/user/details/${id}`, userDetails)
             .then(() => {
                 dispatch(setDetails(userDetails))
             })
@@ -78,13 +79,13 @@ const updateUser = (userDetails, id) => {
 }
 
 const addProfile = async (profile) => {
-    return await axios.post(`http://localhost:4567/api/profile`, profile)
+    return await axios.post(`${url}/api/profile/add-profile`, profile)
 
 }
 
 const viewProfile = (id) => {
     return (dispatch) => {
-        axios.get(`http://localhost:4567/api/profile/?user=${id}`)
+        axios.get(`${url}/api/profile/?user=${id}`)
             .then((profile) => {
                 dispatch(setProfile(profile.data[0]))
             })
@@ -94,7 +95,7 @@ const viewProfile = (id) => {
 
 const updateProfile = (profileDetails, _id) => {
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/profile/update-profile/${_id}`, profileDetails)
+        axios.put(`${url}/api/profile/update-profile/${_id}`, profileDetails)
             .then(() => {
                 dispatch(setProfile(profileDetails))
             })
@@ -104,7 +105,7 @@ const updateProfile = (profileDetails, _id) => {
 
 const updateBlog = (blogDetails, _id) => {
     return (dispatch) => {
-        axios.put(`http://localhost:4567/api/profile/update/${_id}`, blogDetails)
+        axios.put(`${url}/api/profile/update/${_id}`, blogDetails)
             .then(() => {
                 dispatch(setBlog(blogDetails))
             })

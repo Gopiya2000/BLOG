@@ -50,7 +50,7 @@ const EditProfile = () => {
 	return (<>
 		<form onSubmit={updateHandler}>
 			<Box sx={{ maxWidth: 500, maxHeight: 200, marginLeft: 70, marginTop: 10 }}>
-				<TextField type={'text'} name='bio' value={profileCredentials.bio || ""} onChange={changeCredentialHandler} placeholder='Bio' margin='normal' required />
+				<TextField type={'text'} name='bio' value={profileCredentials.bio} onChange={changeCredentialHandler} placeholder='Bio' margin='normal' required />
 				<div className={classes.chooseFile}>
 					<Typography>Edit Profile Image</Typography>
 					<br></br>

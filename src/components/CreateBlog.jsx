@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box, TextField, Button, TextareaAutosize, Typography, InputLabel } from "@mui/material"
 import { useState } from "react"
-import { useStyles, labelStyles, chooseFile } from '../styles/styles'
 import { useNavigate } from "react-router-dom"
 import FileBase from "react-file-base64"
 import { useDispatch, useSelector } from "react-redux"
+import { useStyles, labelStyles, chooseFile } from '../styles/styles'
 import { addBlog, updateBlog } from "../store/Actions/blogActions"
 
 export const CreateBlog = () => {

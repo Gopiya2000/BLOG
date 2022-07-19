@@ -143,7 +143,7 @@ const Auth = () => {
 							required: 'Password is required',
 							pattern: {
 								value: /^[a-zA-Z0-9]{8,12}$/,
-								message: 'Password length should be minimum 8 and maximum 12'
+								message: 'Password length should be minimum 8 and maximum 12.It should not contain Special characters.'
 							}
 						})}
 						name='password' onChange={handleChange} value={Inputs.password} type={'password'} placeholder='password' margin='normal' required />

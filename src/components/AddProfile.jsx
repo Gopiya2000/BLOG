@@ -2,9 +2,9 @@ import React from 'react'
 import { Box, TextField, Button, TextareaAutosize, Typography, InputLabel } from "@mui/material"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import FileBase from "react-file-base64"
 import { useDispatch, useSelector } from "react-redux"
 import { addProfile } from '../store/Actions/userActions'
-import FileBase from "react-file-base64"
 import { useStyles, chooseFile, labelStyles } from '../styles/styles'
 
 const AddProfile = () => {

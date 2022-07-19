@@ -59,13 +59,13 @@ const EditUserDetails = () => {
     return (<>
         <form onSubmit={updateHandler}>
             <Box spacing={1} sx={{ maxWidth: 400, marginLeft: 70 }}>
-                <TextField type={'text'} name='name' value={userCredentials.name || ""} onChange={changeCredentialHandler} placeholder='Name' margin='normal' required />
-                <TextField type={'email'} name='email' value={userCredentials.email || ""} onChange={changeCredentialHandler} placeholder='Email' margin='normal' required />
-                <TextField type={'text'} name='username' value={userCredentials.username || ""} onChange={changeCredentialHandler} placeholder='Username' margin='normal' required />
-                <TextField type={'text'} name='mobile' value={userCredentials.mobile || ""} onChange={changeCredentialHandler} placeholder='Mobile' margin='normal' required />
-                <TextField type={'text'} name='date' value={userCredentials.date || ""} onChange={changeCredentialHandler} placeholder='Date' margin='normal' required />
-                <TextField type={'password'} name='password' value={userCredentials.password || ""} onChange={changeCredentialHandler} placeholder='Password' margin='normal' required />
-                <TextField type={'password'} name='confirm' value={userCredentials.confirm || ""} onChange={changeCredentialHandler} placeholder='Confirm' margin='normal' required />
+                <TextField type={'text'} name='name' value={userCredentials.name} onChange={changeCredentialHandler} placeholder='Name' margin='normal' required />
+                <TextField type={'email'} name='email' value={userCredentials.email} onChange={changeCredentialHandler} placeholder='Email' margin='normal' required />
+                <TextField type={'text'} name='username' value={userCredentials.username} onChange={changeCredentialHandler} placeholder='Username' margin='normal' required />
+                <TextField type={'text'} name='mobile' value={userCredentials.mobile} onChange={changeCredentialHandler} placeholder='Mobile' margin='normal' required />
+                <TextField type={'text'} name='date' value={userCredentials.date} onChange={changeCredentialHandler} placeholder='Date' margin='normal' required />
+                <TextField type={'password'} name='password' value={userCredentials.password} onChange={changeCredentialHandler} placeholder='Password' margin='normal' required />
+                <TextField type={'password'} name='confirm' value={userCredentials.confirm} onChange={changeCredentialHandler} placeholder='Confirm' margin='normal' required />
                 <Button type='submit' variant='contained' color='warning' style={{ margin: '9%' }}>Update</Button>
             </Box>
         </form>
