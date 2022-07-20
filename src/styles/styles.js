@@ -17,7 +17,8 @@ export const useStyles = makeStyles(() => ({
 		padding: 3,
 		margin: 'auto',
 		marginTop: 5,
-		borderRadius: 7
+		borderRadius: 7,
+		//height: 400
 	}
 }))
 
@@ -96,4 +97,12 @@ export let signupError = {
 	text: {
 		color: 'red'
 	}
+}
+
+export let blogHome = {
+	backgroundColor: '#FAFBFC'
+}
+
+export let p = {
+	textAlign : "center"
 }

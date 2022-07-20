@@ -54,7 +54,7 @@ const EditBlog = () => {
         <>
             <form onSubmit={updateHandler}>
                 {console.log("FORM")}
-                <Box border={3} borderColor="#2E3B55" borderRadius={10} boxShadow="10px 10px 20px #ccc" padding={3} margin={3} display='flex' flexDirection={'column'} width={"80%"} >
+                <Box border={3} borderColor="#2E3B55" borderRadius={10} boxShadow="10px 10px 20px #ccc" padding={3} margin={3} marginLeft={17} display='flex' flexDirection={'column'} width={"80%"} >
                     <InputLabel margin='auto' variant='outlined' className={classes.labelStyles}>Title</InputLabel>
                     <br></br>
                     <TextField type={'text'} name='title' value={blogCredentials.title} onChange={changeCredentialHandler} placeholder='Title' margin='normal' required />
@@ -64,7 +64,7 @@ const EditBlog = () => {
                     <InputLabel margin='auto' variant='outlined' className={classes.labelStyles}>Tag</InputLabel>
                     <br></br>
                     <TextField type={'text'} name='tag' value={blogCredentials.tag} onChange={changeCredentialHandler} placeholder='Tag' margin='normal' required />
-                    <Button type='submit' variant='contained' color='warning' style={{ margin: '9%' }}>Update</Button>
+                    <Button type='submit' variant='contained' color='warning' style={{ margin: '2%',width: '7%',marginLeft:500 }}>Update</Button>
                 </Box>
             </form>
         </>

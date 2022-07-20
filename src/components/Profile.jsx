@@ -17,11 +17,11 @@ const Profile = () => {
 		dispatch(viewProfile(userId))
 	}, [userId])
 
-	if (profile == undefined) {
-		return (<Button LinkComponent={Link} to='/add-profile' variant='outlined' sx={{ borderRadius: 4, marginLeft: 20, marginTop: 3 }}>+ Add</Button>
-		)
-	}
-	else {
+	// if (profile == undefined) {
+	// 	return (<p LinkComponent={Link} to='/add-profile' variant='outlined' sx={{ borderRadius: 4, marginLeft: 20, marginTop: 3 }}>+ Add</p>
+	// 	)
+	// }
+	// else {
 		return (
 			<>
 				<Box sx={{
@@ -31,12 +31,10 @@ const Profile = () => {
 					marginTop: '90px'
 				}}>
 					<Stack>
-						<SnackbarContent message={profile.bio} action="BIO" sx={{ backgroundColor: "#2E3B55", color: 'white' }} />
+						<SnackbarContent action={profile.bio} message="BIO" sx={{ backgroundColor: "#2E3B55", color: 'white' }} />
 					</Stack>
 					<br></br>
 					<CardMedia
-						component="img"
-						height="194"
 						className={classes.profileImage}
 						image={profile.image}
 					/>
@@ -45,7 +43,7 @@ const Profile = () => {
 			</>
 		)
 	}
-}
+//}
 
 export default Profile;
 

@@ -66,7 +66,7 @@ const Auth = () => {
 					dispatch(setSignOut())
 				})
 				.then(data => console.log(data))
-			navigate("/auth")
+			navigate("/")
 		}
 		else {
 			sendRequest()
@@ -157,7 +157,7 @@ const Auth = () => {
 					{errors.confirm && <small>{errors.confirm.message}</small>}
 					<Button type='submit' variant='contained' style={authSubmit}>{signup ? "Signup" : "Login"}</Button>
 					{!signup && <Typography>Don't have an account ?</Typography>}
-					<Link onClick={signupHandler} to='/auth'>{!signup && "Signup"}</Link>
+					<Link onClick={signupHandler} to='/'>{!signup && "Signup"}</Link>
 				</Box>
 			</form>
 		</div>

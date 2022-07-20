@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import EditBlog from "./components/EditBlog";
 import { retrieveUserToken } from "./store/Actions/userActions";
 import Blog from "./components/Blog";
+import Following from "./components/Following";
 import Protected from "./Protected";
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 				</header>
 				<main >
 					<Routes>
-						<Route path="/auth" element={<Auth />} />
+						<Route path="/" element={<Auth />} />
 						<Route path="/blogs" element={<Protected><Home /></Protected>} />
 						<Route path="/blogs/add" element={<Protected><CreateBlog /></Protected>} />
 						<Route path="/blogs/edit" element={<Protected><EditBlog /></Protected>} />
@@ -47,6 +48,7 @@ function App() {
 						<Route path="/profile/edit" element={<Protected><EditProfile /></Protected>} />
 						<Route path="/user-details" element={<Protected><UserDetails /></Protected>} />
 						<Route path="/user-details/edit" element={<Protected><EditUserDetails /></Protected>} />
+						<Route path="/my-followers" element={<Protected><Following /></Protected>} />
 					</Routes>
 				</main>
 			</React.Fragment>

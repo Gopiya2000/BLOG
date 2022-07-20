@@ -37,22 +37,24 @@ export const viewBlogs = async () => {
 
 //add blogs
 export const addBlog = (blog) => {
+    console.log("addBlog :",blog)
     blog.tag = blog.tag.split(',');
     return (dispatch, getState) => {
 
         axios.post(`${url}/api/blog/add`, blog)
-        // .then(blogs => {
+        .then(blogs => {
+            console.log("created",blogs)
 
-        //     //     dispatch({
-        //     //         type: "ADD_BLOG",
-        //     //         blogs
-        //     //     })
-        // }
-        // )
-        // .catch(err => {
-        //     console.log("error", err.message)
-        // })
-    }
+            //     dispatch({
+            //         type: "ADD_BLOG",
+            //         blogs
+            //     })
+        }
+        )
+        .catch(err => {
+            console.log("error", err.message)
+        })
+     }
 }
 
 export const viewSingleBlog = (id) => {

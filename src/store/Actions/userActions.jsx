@@ -1,4 +1,4 @@
-import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS, SET_PROFILE, ADD_PROFILE, SET_BLOG } from "./authTypes"
+import { SET_USER_TOKEN, SET_USER_RETRIEVE_TOKEN, DELETE_USER_TOKEN, SET_DETAILS, SET_PROFILE, ADD_PROFILE,GET_ALL_USER, SET_BLOG } from "./authTypes"
 import axios from "axios"
 import { url } from '../../api';
 
@@ -29,10 +29,24 @@ const setDetails = (user) => {
     }
 }
 
+const getAllUsers = (user) => {
+    return {
+        type: GET_ALL_USER,
+        payload: user
+    }
+}
+
 const setProfile = (profile) => {
     return {
         type: SET_PROFILE,
         payload: profile
+    }
+}
+
+const setProfileDetails = (profile) => {
+    return{
+        type : ADD_PROFILE,
+        payload : profile
     }
 }
 
@@ -58,6 +72,17 @@ const retrieveUserToken = () => {
     }
 }
 
+export const viewAllUser =  () => {
+    return(dispatch) => {
+        axios.get(`${url}/api/user/`)
+        .then((user) => {
+            dispatch(getAllUsers(user.data))
+            console.log("user.data :",user.data)
+        })
+        .catch(err => console.log(err))
+    }  
+}
+
 const viewUser = (id) => {
     return (dispatch) => {
         axios.get(`${url}/api/user/${id}`)
@@ -78,8 +103,14 @@ const updateUser = (userDetails, id) => {
     }
 }
 
-const addProfile = async (profile) => {
-    return await axios.post(`${url}/api/profile/add-profile`, profile)
+const addProfile = (profile) => {
+    return(dispatch) => {
+        axios.post(`${url}/api/profile/add-profile`, profile)
+        .then(() => {
+            dispatch(setProfileDetails(profile))
+        })
+        .catch(err => console.log("error :",err))
+    } 
 
 }
 

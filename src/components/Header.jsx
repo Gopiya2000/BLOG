@@ -18,7 +18,7 @@ const Header = () => {
 
 	const logoutHandler = () => {
 		dispatch(deleteUserToken())
-		Navigate('/auth')
+		Navigate('/')
 
 	}
 
@@ -59,25 +59,23 @@ const Header = () => {
 		<>
 			<AppBar position="sticky" style={appBar}>
 				<Toolbar>
-					<Typography variant='h4'>Blog App</Typography>
+					<Typography variant='h4'>Blog Application</Typography>
 					{userId && <>
 						<Box className={classes.loginForm}>
 							<Tabs value={selectTab} textColor='inherit' onChange={(e, value) => setSelectTab(value)}>
 								<Tab LinkComponent={Link} to="/blogs" label="Home" />
+								<Tab LinkComponent={Link} to="/blogs/add" label="Create Blog" />
 								<Tab LinkComponent={Link} to="/my-blogs" label="My Blog" />
-								<Tab LinkComponent={Link} to="/profile" label="Profile" />
-								<Tab LinkComponent={Link} to="/user-details" label="My Details" />
+								<Tab LinkComponent={Link} to="/user-details" label="My Profile" />
+								<Tab LinkComponent={Link} to="/my-followers" label="My Followers" />
 							</Tabs>
 						</Box></>}
 					<Box style={loginBox}>
-						{!userId && <>
-							<Button onClick={loginHandler} LinkComponent={Link} to="/auth" variant='contained' style={LoginButton}>Login</Button>
-							<Button onClick={signupHandler} LinkComponent={Link} to="/auth" variant='contained' style={signupButton}>Signup</Button></>}
 						{userId && (
 							<Button
 								onClick={logoutHandler}
 								LinkComponent={Link}
-								to="/auth"
+								to="/"
 								variant='contained'
 								style={logoutButton}
 							>

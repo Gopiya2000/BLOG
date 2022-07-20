@@ -9,7 +9,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 login: true,
-                user: action.data
+                user: action.data,
             }
         case 'SET_LOGOUT':
             return {

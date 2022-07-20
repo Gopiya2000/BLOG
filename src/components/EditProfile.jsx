@@ -44,7 +44,7 @@ const EditProfile = () => {
 	const updateHandler = (event) => {
 		event.preventDefault()
 		dispatch(updateProfile(profileCredentials, profile._id))//user._id
-		navigate('/profile')
+		navigate('/user-details')
 	}
 
 	return (<>

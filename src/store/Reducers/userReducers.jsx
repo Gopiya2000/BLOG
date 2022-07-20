@@ -17,6 +17,10 @@ const userReducer = (state = initialState, action) => {
             ...state,
             user: action.payload
         }
+        case 'GET_ALL_USER': return {
+            ...state,
+            user:action.payload
+        }
         default: return state
     }
 }

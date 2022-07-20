@@ -34,6 +34,7 @@ const AddProfile = () => {
     const submitHandler = (event) => {
         event.preventDefault()
         dispatch(addProfile(profileDetails))
+        console.log("before navigarion")
         navigate('/blogs')
     }
 
@@ -49,7 +50,7 @@ const AddProfile = () => {
                     <br></br>
                     <FileBase type="file" multiple={false} onDone={({ base64 }) => setProfileDetails({ ...profileDetails, image: base64 })} />
                 </div>
-                <Button type="submit" variant='contained' color='warning' style={{ margin: '6%' }}>Add</Button>
+                <Button type="submit" variant='contained'  color='warning' style={{ margin: '6%' }}>Add</Button>
             </Box>
         </form>
     )
